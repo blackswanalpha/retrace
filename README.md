@@ -16,6 +16,8 @@ All numbers come from single runs on a shared, often loaded machine. Ratios with
 | Qwen2.5-3B | 1.22x to 1.57x | `bench/results_3b_retrace.json`, `bench/results_smoke_3b.json` |
 | Llama-3.2-1B | 1.19x | `bench/results_smoke_llama1b.json` |
 
+A side-by-side run with per-token timings is in `bench/results_race_3b.json` (`bench/race_capture.py`): 46.4 s without Retrace, 36.7 s with it, the same 214 tokens in all six runs. The same capture on Qwen2.5-0.5B (`bench/results_race_0.5b.json`) shows the numerics caveat below: the Retrace output diverged at token 172.
+
 On free-form generation (code_gen, chat) Retrace is within about 0.94x to 1.25x, because there is little to copy. The ceiling is near 1.6x, since verifying 9 tokens in one pass costs about 6 to 8 single-token passes in llama-cpp-python.
 
 **Output compression on Qwen2.5-3B:**
@@ -69,3 +71,7 @@ Models are not included. Any GGUF with a chat template works.
 
 - Retrace runs only inside llama-cpp-python, not llama-server.
 - In llama-cpp-python, batched and sequential evaluation differ slightly in numerics, so long free-form outputs can diverge from the no-drafting baseline. Copy-edit outputs matched exactly.
+
+## License
+
+MIT. See `LICENSE`.
