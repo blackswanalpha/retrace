@@ -1,0 +1,498 @@
+{
+  "args": {
+    "model": "models/qwen2.5-0.5b-instruct-q4_k_m.gguf",
+    "reps": 5,
+    "max_new": 256,
+    "threads": 4,
+    "out": "bench/results_0.5b_v2.json",
+    "min_n": 2,
+    "max_n": 4,
+    "k_max": 8
+  },
+  "costs": [
+    1.0,
+    1.1950441531653477,
+    1.683462578110429,
+    1.6955384830030065,
+    1.818667515199956,
+    2.064338389923425,
+    3.301714553044392,
+    3.7557997523937057,
+    6.281574059779363
+  ],
+  "runs": [
+    {
+      "tokens": 208,
+      "tps": 26.809062148083665,
+      "rep": 0,
+      "workload": "copy_edit",
+      "arm": "baseline",
+      "first_diff": null
+    },
+    {
+      "tokens": 208,
+      "tps": 33.27434423830868,
+      "drafted": 300,
+      "accepted": 168,
+      "rep": 0,
+      "workload": "copy_edit",
+      "arm": "builtin_pld",
+      "first_diff": null
+    },
+    {
+      "tokens": 174,
+      "tps": 45.271907067222735,
+      "drafted": 151,
+      "accepted": 133,
+      "rep": 0,
+      "workload": "copy_edit",
+      "arm": "retrace",
+      "first_diff": 172
+    },
+    {
+      "tokens": 256,
+      "tps": 28.557690952609857,
+      "rep": 0,
+      "workload": "code_gen",
+      "arm": "baseline",
+      "first_diff": null
+    },
+    {
+      "tokens": 256,
+      "tps": 7.291094256885307,
+      "drafted": 1139,
+      "accepted": 35,
+      "rep": 0,
+      "workload": "code_gen",
+      "arm": "builtin_pld",
+      "first_diff": 146
+    },
+    {
+      "tokens": 244,
+      "tps": 18.478178320474036,
+      "drafted": 62,
+      "accepted": 31,
+      "rep": 0,
+      "workload": "code_gen",
+      "arm": "retrace",
+      "first_diff": 98
+    },
+    {
+      "tokens": 92,
+      "tps": 18.796171284344783,
+      "rep": 0,
+      "workload": "chat",
+      "arm": "baseline",
+      "first_diff": null
+    },
+    {
+      "tokens": 97,
+      "tps": 9.210025937451569,
+      "drafted": 393,
+      "accepted": 20,
+      "rep": 0,
+      "workload": "chat",
+      "arm": "builtin_pld",
+      "first_diff": 46
+    },
+    {
+      "tokens": 95,
+      "tps": 30.16746436048624,
+      "drafted": 15,
+      "accepted": 6,
+      "rep": 0,
+      "workload": "chat",
+      "arm": "retrace",
+      "first_diff": 46
+    },
+    {
+      "tokens": 208,
+      "tps": 26.128141403883724,
+      "rep": 1,
+      "workload": "copy_edit",
+      "arm": "baseline",
+      "first_diff": null
+    },
+    {
+      "tokens": 208,
+      "tps": 36.275703637407716,
+      "drafted": 300,
+      "accepted": 168,
+      "rep": 1,
+      "workload": "copy_edit",
+      "arm": "builtin_pld",
+      "first_diff": null
+    },
+    {
+      "tokens": 174,
+      "tps": 40.45297465762589,
+      "drafted": 162,
+      "accepted": 134,
+      "rep": 1,
+      "workload": "copy_edit",
+      "arm": "retrace",
+      "first_diff": 172
+    },
+    {
+      "tokens": 256,
+      "tps": 26.224613609879047,
+      "rep": 1,
+      "workload": "code_gen",
+      "arm": "baseline",
+      "first_diff": null
+    },
+    {
+      "tokens": 256,
+      "tps": 9.986746062547883,
+      "drafted": 1139,
+      "accepted": 35,
+      "rep": 1,
+      "workload": "code_gen",
+      "arm": "builtin_pld",
+      "first_diff": 146
+    },
+    {
+      "tokens": 256,
+      "tps": 27.00430720573286,
+      "drafted": 66,
+      "accepted": 23,
+      "rep": 1,
+      "workload": "code_gen",
+      "arm": "retrace",
+      "first_diff": 183
+    },
+    {
+      "tokens": 92,
+      "tps": 27.669693005673647,
+      "rep": 1,
+      "workload": "chat",
+      "arm": "baseline",
+      "first_diff": null
+    },
+    {
+      "tokens": 97,
+      "tps": 10.58788253974132,
+      "drafted": 393,
+      "accepted": 20,
+      "rep": 1,
+      "workload": "chat",
+      "arm": "builtin_pld",
+      "first_diff": 46
+    },
+    {
+      "tokens": 95,
+      "tps": 30.589275821798253,
+      "drafted": 15,
+      "accepted": 6,
+      "rep": 1,
+      "workload": "chat",
+      "arm": "retrace",
+      "first_diff": 46
+    },
+    {
+      "tokens": 208,
+      "tps": 26.23596318032937,
+      "rep": 2,
+      "workload": "copy_edit",
+      "arm": "baseline",
+      "first_diff": null
+    },
+    {
+      "tokens": 208,
+      "tps": 28.577940669556018,
+      "drafted": 300,
+      "accepted": 168,
+      "rep": 2,
+      "workload": "copy_edit",
+      "arm": "builtin_pld",
+      "first_diff": null
+    },
+    {
+      "tokens": 174,
+      "tps": 44.4316776739636,
+      "drafted": 161,
+      "accepted": 131,
+      "rep": 2,
+      "workload": "copy_edit",
+      "arm": "retrace",
+      "first_diff": 172
+    },
+    {
+      "tokens": 256,
+      "tps": 30.376417891278052,
+      "rep": 2,
+      "workload": "code_gen",
+      "arm": "baseline",
+      "first_diff": null
+    },
+    {
+      "tokens": 256,
+      "tps": 10.33365353750129,
+      "drafted": 1139,
+      "accepted": 35,
+      "rep": 2,
+      "workload": "code_gen",
+      "arm": "builtin_pld",
+      "first_diff": 146
+    },
+    {
+      "tokens": 256,
+      "tps": 30.59665301989103,
+      "drafted": 66,
+      "accepted": 23,
+      "rep": 2,
+      "workload": "code_gen",
+      "arm": "retrace",
+      "first_diff": 183
+    },
+    {
+      "tokens": 92,
+      "tps": 32.244569015265924,
+      "rep": 2,
+      "workload": "chat",
+      "arm": "baseline",
+      "first_diff": null
+    },
+    {
+      "tokens": 97,
+      "tps": 9.483005092725568,
+      "drafted": 393,
+      "accepted": 20,
+      "rep": 2,
+      "workload": "chat",
+      "arm": "builtin_pld",
+      "first_diff": 46
+    },
+    {
+      "tokens": 95,
+      "tps": 26.601487490740364,
+      "drafted": 14,
+      "accepted": 6,
+      "rep": 2,
+      "workload": "chat",
+      "arm": "retrace",
+      "first_diff": 46
+    },
+    {
+      "tokens": 208,
+      "tps": 21.22018340624775,
+      "rep": 3,
+      "workload": "copy_edit",
+      "arm": "baseline",
+      "first_diff": null
+    },
+    {
+      "tokens": 208,
+      "tps": 29.395383107452904,
+      "drafted": 300,
+      "accepted": 168,
+      "rep": 3,
+      "workload": "copy_edit",
+      "arm": "builtin_pld",
+      "first_diff": null
+    },
+    {
+      "tokens": 174,
+      "tps": 38.55712352517752,
+      "drafted": 161,
+      "accepted": 131,
+      "rep": 3,
+      "workload": "copy_edit",
+      "arm": "retrace",
+      "first_diff": 172
+    },
+    {
+      "tokens": 256,
+      "tps": 25.671772445383713,
+      "rep": 3,
+      "workload": "code_gen",
+      "arm": "baseline",
+      "first_diff": null
+    },
+    {
+      "tokens": 256,
+      "tps": 8.483858153066466,
+      "drafted": 1139,
+      "accepted": 35,
+      "rep": 3,
+      "workload": "code_gen",
+      "arm": "builtin_pld",
+      "first_diff": 146
+    },
+    {
+      "tokens": 256,
+      "tps": 24.825199814910953,
+      "drafted": 66,
+      "accepted": 23,
+      "rep": 3,
+      "workload": "code_gen",
+      "arm": "retrace",
+      "first_diff": 183
+    },
+    {
+      "tokens": 92,
+      "tps": 17.942091619325176,
+      "rep": 3,
+      "workload": "chat",
+      "arm": "baseline",
+      "first_diff": null
+    },
+    {
+      "tokens": 97,
+      "tps": 11.01334503664015,
+      "drafted": 393,
+      "accepted": 20,
+      "rep": 3,
+      "workload": "chat",
+      "arm": "builtin_pld",
+      "first_diff": 46
+    },
+    {
+      "tokens": 95,
+      "tps": 32.496919899572696,
+      "drafted": 14,
+      "accepted": 6,
+      "rep": 3,
+      "workload": "chat",
+      "arm": "retrace",
+      "first_diff": 46
+    },
+    {
+      "tokens": 208,
+      "tps": 25.877410542239858,
+      "rep": 4,
+      "workload": "copy_edit",
+      "arm": "baseline",
+      "first_diff": null
+    },
+    {
+      "tokens": 208,
+      "tps": 34.510470143063586,
+      "drafted": 300,
+      "accepted": 168,
+      "rep": 4,
+      "workload": "copy_edit",
+      "arm": "builtin_pld",
+      "first_diff": null
+    },
+    {
+      "tokens": 174,
+      "tps": 41.62134404035611,
+      "drafted": 161,
+      "accepted": 131,
+      "rep": 4,
+      "workload": "copy_edit",
+      "arm": "retrace",
+      "first_diff": 172
+    },
+    {
+      "tokens": 256,
+      "tps": 29.140404173569223,
+      "rep": 4,
+      "workload": "code_gen",
+      "arm": "baseline",
+      "first_diff": null
+    },
+    {
+      "tokens": 256,
+      "tps": 10.128576080613929,
+      "drafted": 1139,
+      "accepted": 35,
+      "rep": 4,
+      "workload": "code_gen",
+      "arm": "builtin_pld",
+      "first_diff": 146
+    },
+    {
+      "tokens": 256,
+      "tps": 29.49824132485853,
+      "drafted": 65,
+      "accepted": 23,
+      "rep": 4,
+      "workload": "code_gen",
+      "arm": "retrace",
+      "first_diff": 183
+    },
+    {
+      "tokens": 92,
+      "tps": 29.833674380326876,
+      "rep": 4,
+      "workload": "chat",
+      "arm": "baseline",
+      "first_diff": null
+    },
+    {
+      "tokens": 97,
+      "tps": 11.770308810434102,
+      "drafted": 393,
+      "accepted": 20,
+      "rep": 4,
+      "workload": "chat",
+      "arm": "builtin_pld",
+      "first_diff": 46
+    },
+    {
+      "tokens": 95,
+      "tps": 31.37868704169185,
+      "drafted": 14,
+      "accepted": 6,
+      "rep": 4,
+      "workload": "chat",
+      "arm": "retrace",
+      "first_diff": 46
+    }
+  ],
+  "summary": {
+    "copy_edit/baseline": {
+      "tps": 26.13,
+      "speedup": 1.0,
+      "lossless": true
+    },
+    "copy_edit/builtin_pld": {
+      "tps": 33.27,
+      "speedup": 1.27,
+      "accept_rate": 0.56,
+      "lossless": true
+    },
+    "copy_edit/retrace": {
+      "tps": 41.62,
+      "speedup": 1.59,
+      "accept_rate": 0.829,
+      "lossless": false
+    },
+    "code_gen/baseline": {
+      "tps": 28.56,
+      "speedup": 1.0,
+      "lossless": true
+    },
+    "code_gen/builtin_pld": {
+      "tps": 9.99,
+      "speedup": 0.35,
+      "accept_rate": 0.031,
+      "lossless": false
+    },
+    "code_gen/retrace": {
+      "tps": 27.0,
+      "speedup": 0.95,
+      "accept_rate": 0.378,
+      "lossless": false
+    },
+    "chat/baseline": {
+      "tps": 27.67,
+      "speedup": 1.0,
+      "lossless": true
+    },
+    "chat/builtin_pld": {
+      "tps": 10.59,
+      "speedup": 0.38,
+      "accept_rate": 0.051,
+      "lossless": false
+    },
+    "chat/retrace": {
+      "tps": 30.59,
+      "speedup": 1.11,
+      "accept_rate": 0.417,
+      "lossless": false
+    }
+  }
+}

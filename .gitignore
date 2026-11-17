@@ -1,0 +1,7 @@
+models/
+llama.cpp/
+.venv/
+retrace/target/
+__pycache__/
+*.gguf
+*.so

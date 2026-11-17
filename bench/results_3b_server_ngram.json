@@ -1,0 +1,309 @@
+{
+  "args": {
+    "model": "models/qwen2.5-3b-instruct-q4_k_m.gguf",
+    "draft": null,
+    "reps": 3,
+    "max_new": 256,
+    "out": "bench/results_3b_server_ngram.json",
+    "configs": "baseline,ngram_map_k,ngram_mod,ngram_cache"
+  },
+  "results": {
+    "copy_edit/baseline": [
+      {
+        "tps": 7.965637282994079,
+        "tokens": 215,
+        "draft_n": null,
+        "draft_accepted": null
+      },
+      {
+        "tps": 7.9964023662625054,
+        "tokens": 215,
+        "draft_n": null,
+        "draft_accepted": null
+      },
+      {
+        "tps": 7.459211099194576,
+        "tokens": 215,
+        "draft_n": null,
+        "draft_accepted": null
+      }
+    ],
+    "code_gen/baseline": [
+      {
+        "tps": 8.002831558723742,
+        "tokens": 256,
+        "draft_n": null,
+        "draft_accepted": null
+      },
+      {
+        "tps": 8.034071520627936,
+        "tokens": 256,
+        "draft_n": null,
+        "draft_accepted": null
+      },
+      {
+        "tps": 9.455132946955816,
+        "tokens": 256,
+        "draft_n": null,
+        "draft_accepted": null
+      }
+    ],
+    "chat/baseline": [
+      {
+        "tps": 8.118432327533853,
+        "tokens": 256,
+        "draft_n": null,
+        "draft_accepted": null
+      },
+      {
+        "tps": 8.205007551502833,
+        "tokens": 256,
+        "draft_n": null,
+        "draft_accepted": null
+      },
+      {
+        "tps": 9.49166795331499,
+        "tokens": 256,
+        "draft_n": null,
+        "draft_accepted": null
+      }
+    ],
+    "copy_edit/ngram_map_k": [
+      {
+        "tps": 6.037547621509525,
+        "tokens": 215,
+        "draft_n": 384,
+        "draft_accepted": 69
+      },
+      {
+        "tps": 6.285592165637924,
+        "tokens": 215,
+        "draft_n": 384,
+        "draft_accepted": 69
+      },
+      {
+        "tps": 5.218765147984061,
+        "tokens": 215,
+        "draft_n": 384,
+        "draft_accepted": 69
+      }
+    ],
+    "code_gen/ngram_map_k": [
+      {
+        "tps": 9.37040608951457,
+        "tokens": 256,
+        "draft_n": null,
+        "draft_accepted": null
+      },
+      {
+        "tps": 9.43004267371664,
+        "tokens": 256,
+        "draft_n": null,
+        "draft_accepted": null
+      },
+      {
+        "tps": 8.220163441993256,
+        "tokens": 256,
+        "draft_n": null,
+        "draft_accepted": null
+      }
+    ],
+    "chat/ngram_map_k": [
+      {
+        "tps": 9.313658941041362,
+        "tokens": 256,
+        "draft_n": null,
+        "draft_accepted": null
+      },
+      {
+        "tps": 9.298111116074155,
+        "tokens": 256,
+        "draft_n": null,
+        "draft_accepted": null
+      },
+      {
+        "tps": 8.102581606421642,
+        "tokens": 256,
+        "draft_n": null,
+        "draft_accepted": null
+      }
+    ],
+    "copy_edit/ngram_mod": [
+      {
+        "tps": 6.761379267026678,
+        "tokens": 215,
+        "draft_n": 128,
+        "draft_accepted": 24
+      },
+      {
+        "tps": 12.713376801200333,
+        "tokens": 215,
+        "draft_n": 256,
+        "draft_accepted": 185
+      },
+      {
+        "tps": 12.545636952833622,
+        "tokens": 215,
+        "draft_n": 256,
+        "draft_accepted": 185
+      }
+    ],
+    "code_gen/ngram_mod": [
+      {
+        "tps": 8.002888069693041,
+        "tokens": 256,
+        "draft_n": null,
+        "draft_accepted": null
+      },
+      {
+        "tps": 10.236070684764629,
+        "tokens": 256,
+        "draft_n": 192,
+        "draft_accepted": 131
+      },
+      {
+        "tps": 11.017592632678387,
+        "tokens": 256,
+        "draft_n": 192,
+        "draft_accepted": 117
+      }
+    ],
+    "chat/ngram_mod": [
+      {
+        "tps": 8.276671671835096,
+        "tokens": 256,
+        "draft_n": null,
+        "draft_accepted": null
+      },
+      {
+        "tps": 8.639793295486522,
+        "tokens": 256,
+        "draft_n": 128,
+        "draft_accepted": 65
+      },
+      {
+        "tps": 11.221877644567488,
+        "tokens": 256,
+        "draft_n": 128,
+        "draft_accepted": 98
+      }
+    ],
+    "copy_edit/ngram_cache": [
+      {
+        "tps": 8.225184330608748,
+        "tokens": 215,
+        "draft_n": 289,
+        "draft_accepted": 157
+      },
+      {
+        "tps": 9.394948213421086,
+        "tokens": 215,
+        "draft_n": 270,
+        "draft_accepted": 180
+      },
+      {
+        "tps": 8.087567953049778,
+        "tokens": 215,
+        "draft_n": 270,
+        "draft_accepted": 180
+      }
+    ],
+    "code_gen/ngram_cache": [
+      {
+        "tps": 6.057111290940015,
+        "tokens": 256,
+        "draft_n": 291,
+        "draft_accepted": 38
+      },
+      {
+        "tps": 4.852976784558033,
+        "tokens": 256,
+        "draft_n": 415,
+        "draft_accepted": 96
+      },
+      {
+        "tps": 8.263049080016419,
+        "tokens": 256,
+        "draft_n": 302,
+        "draft_accepted": 205
+      }
+    ],
+    "chat/ngram_cache": [
+      {
+        "tps": 7.329534009497696,
+        "tokens": 256,
+        "draft_n": 155,
+        "draft_accepted": 23
+      },
+      {
+        "tps": 4.487420045833277,
+        "tokens": 256,
+        "draft_n": 429,
+        "draft_accepted": 66
+      },
+      {
+        "tps": 6.791501386824583,
+        "tokens": 256,
+        "draft_n": 351,
+        "draft_accepted": 167
+      }
+    ]
+  },
+  "summary": {
+    "copy_edit/baseline": {
+      "tps": 7.97,
+      "speedup": 1.0
+    },
+    "code_gen/baseline": {
+      "tps": 8.03,
+      "speedup": 1.0
+    },
+    "chat/baseline": {
+      "tps": 8.21,
+      "speedup": 1.0
+    },
+    "copy_edit/ngram_map_k": {
+      "tps": 6.04,
+      "speedup": 0.76,
+      "accept_rate": 0.18
+    },
+    "code_gen/ngram_map_k": {
+      "tps": 9.37,
+      "speedup": 1.17
+    },
+    "chat/ngram_map_k": {
+      "tps": 9.3,
+      "speedup": 1.13
+    },
+    "copy_edit/ngram_mod": {
+      "tps": 12.55,
+      "speedup": 1.57,
+      "accept_rate": 0.616
+    },
+    "code_gen/ngram_mod": {
+      "tps": 10.24,
+      "speedup": 1.27,
+      "accept_rate": 0.646
+    },
+    "chat/ngram_mod": {
+      "tps": 8.64,
+      "speedup": 1.05,
+      "accept_rate": 0.637
+    },
+    "copy_edit/ngram_cache": {
+      "tps": 8.23,
+      "speedup": 1.03,
+      "accept_rate": 0.624
+    },
+    "code_gen/ngram_cache": {
+      "tps": 6.06,
+      "speedup": 0.75,
+      "accept_rate": 0.336
+    },
+    "chat/ngram_cache": {
+      "tps": 6.79,
+      "speedup": 0.83,
+      "accept_rate": 0.274
+    }
+  }
+}

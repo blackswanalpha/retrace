@@ -1,0 +1,162 @@
+{
+  "args": {
+    "model": "../models/llama-3.2-1b/Llama-3.2-1B-Instruct-Q4_K_M.gguf",
+    "reps": 1,
+    "max_new": 128,
+    "threads": 4,
+    "out": "smoke_llama1b.json",
+    "min_n": 2,
+    "max_n": 4,
+    "k_max": 8
+  },
+  "costs": [
+    1.0,
+    1.306556921335681,
+    1.8138772763278692,
+    1.9001378180719233,
+    2.49507775009861,
+    4.648915640605123,
+    4.648915640605123,
+    4.693667455145212,
+    5.0740803579891995
+  ],
+  "runs": [
+    {
+      "tokens": 128,
+      "tps": 17.34834699699983,
+      "rep": 0,
+      "workload": "copy_edit",
+      "arm": "baseline",
+      "first_diff": null
+    },
+    {
+      "tokens": 128,
+      "tps": 13.238722840169979,
+      "drafted": 240,
+      "accepted": 97,
+      "rep": 0,
+      "workload": "copy_edit",
+      "arm": "builtin_pld",
+      "first_diff": null
+    },
+    {
+      "tokens": 128,
+      "tps": 20.595154930881158,
+      "drafted": 99,
+      "accepted": 67,
+      "rep": 0,
+      "workload": "copy_edit",
+      "arm": "retrace",
+      "first_diff": null
+    },
+    {
+      "tokens": 128,
+      "tps": 13.58850855875238,
+      "rep": 0,
+      "workload": "code_gen",
+      "arm": "baseline",
+      "first_diff": null
+    },
+    {
+      "tokens": 128,
+      "tps": 5.3779149223326765,
+      "drafted": 449,
+      "accepted": 22,
+      "rep": 0,
+      "workload": "code_gen",
+      "arm": "builtin_pld",
+      "first_diff": null
+    },
+    {
+      "tokens": 128,
+      "tps": 16.79886917050582,
+      "drafted": 25,
+      "accepted": 13,
+      "rep": 0,
+      "workload": "code_gen",
+      "arm": "retrace",
+      "first_diff": null
+    },
+    {
+      "tokens": 128,
+      "tps": 16.84363286297638,
+      "rep": 0,
+      "workload": "chat",
+      "arm": "baseline",
+      "first_diff": null
+    },
+    {
+      "tokens": 128,
+      "tps": 5.880640900573319,
+      "drafted": 367,
+      "accepted": 13,
+      "rep": 0,
+      "workload": "chat",
+      "arm": "builtin_pld",
+      "first_diff": 112
+    },
+    {
+      "tokens": 128,
+      "tps": 15.76244147528062,
+      "drafted": 10,
+      "accepted": 4,
+      "rep": 0,
+      "workload": "chat",
+      "arm": "retrace",
+      "first_diff": 61
+    }
+  ],
+  "summary": {
+    "copy_edit/baseline": {
+      "tps": 17.35,
+      "speedup": 1.0,
+      "lossless": true
+    },
+    "copy_edit/builtin_pld": {
+      "tps": 13.24,
+      "speedup": 0.76,
+      "accept_rate": 0.404,
+      "lossless": true
+    },
+    "copy_edit/retrace": {
+      "tps": 20.6,
+      "speedup": 1.19,
+      "accept_rate": 0.677,
+      "lossless": true
+    },
+    "code_gen/baseline": {
+      "tps": 13.59,
+      "speedup": 1.0,
+      "lossless": true
+    },
+    "code_gen/builtin_pld": {
+      "tps": 5.38,
+      "speedup": 0.4,
+      "accept_rate": 0.049,
+      "lossless": true
+    },
+    "code_gen/retrace": {
+      "tps": 16.8,
+      "speedup": 1.24,
+      "accept_rate": 0.52,
+      "lossless": true
+    },
+    "chat/baseline": {
+      "tps": 16.84,
+      "speedup": 1.0,
+      "lossless": true
+    },
+    "chat/builtin_pld": {
+      "tps": 5.88,
+      "speedup": 0.35,
+      "accept_rate": 0.035,
+      "lossless": false
+    },
+    "chat/retrace": {
+      "tps": 15.76,
+      "speedup": 0.94,
+      "accept_rate": 0.4,
+      "lossless": false
+    }
+  }
+}

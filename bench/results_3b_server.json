@@ -1,0 +1,235 @@
+{
+  "args": {
+    "model": "models/qwen2.5-3b-instruct-q4_k_m.gguf",
+    "draft": "models/qwen2.5-0.5b-instruct-q4_k_m.gguf",
+    "reps": 3,
+    "max_new": 256,
+    "out": "bench/results_3b_server.json",
+    "configs": "baseline,draft_0.5b,ngram_simple"
+  },
+  "results": {
+    "copy_edit/baseline": [
+      {
+        "tps": 8.538419315947328,
+        "tokens": 215,
+        "draft_n": null,
+        "draft_accepted": null
+      },
+      {
+        "tps": 8.380638907014305,
+        "tokens": 215,
+        "draft_n": null,
+        "draft_accepted": null
+      },
+      {
+        "tps": 8.00817072911064,
+        "tokens": 215,
+        "draft_n": null,
+        "draft_accepted": null
+      }
+    ],
+    "code_gen/baseline": [
+      {
+        "tps": 7.32259085325126,
+        "tokens": 256,
+        "draft_n": null,
+        "draft_accepted": null
+      },
+      {
+        "tps": 8.748247262930732,
+        "tokens": 256,
+        "draft_n": null,
+        "draft_accepted": null
+      },
+      {
+        "tps": 8.83037616155807,
+        "tokens": 256,
+        "draft_n": null,
+        "draft_accepted": null
+      }
+    ],
+    "chat/baseline": [
+      {
+        "tps": 8.661952526385836,
+        "tokens": 256,
+        "draft_n": null,
+        "draft_accepted": null
+      },
+      {
+        "tps": 8.559312038078264,
+        "tokens": 256,
+        "draft_n": null,
+        "draft_accepted": null
+      },
+      {
+        "tps": 8.666931161012922,
+        "tokens": 256,
+        "draft_n": null,
+        "draft_accepted": null
+      }
+    ],
+    "copy_edit/draft_0.5b": [
+      {
+        "tps": 9.076503900351863,
+        "tokens": 215,
+        "draft_n": 162,
+        "draft_accepted": 160
+      },
+      {
+        "tps": 9.781905559084354,
+        "tokens": 215,
+        "draft_n": 162,
+        "draft_accepted": 160
+      },
+      {
+        "tps": 9.731059878849214,
+        "tokens": 215,
+        "draft_n": 162,
+        "draft_accepted": 160
+      }
+    ],
+    "code_gen/draft_0.5b": [
+      {
+        "tps": 7.428470384727764,
+        "tokens": 256,
+        "draft_n": 228,
+        "draft_accepted": 179
+      },
+      {
+        "tps": 8.822041264665563,
+        "tokens": 256,
+        "draft_n": 228,
+        "draft_accepted": 179
+      },
+      {
+        "tps": 8.4845233809009,
+        "tokens": 256,
+        "draft_n": 228,
+        "draft_accepted": 179
+      }
+    ],
+    "chat/draft_0.5b": [
+      {
+        "tps": 6.470389556273625,
+        "tokens": 256,
+        "draft_n": 299,
+        "draft_accepted": 154
+      },
+      {
+        "tps": 6.5036229643181915,
+        "tokens": 256,
+        "draft_n": 299,
+        "draft_accepted": 154
+      },
+      {
+        "tps": 6.71081346796576,
+        "tokens": 256,
+        "draft_n": 299,
+        "draft_accepted": 154
+      }
+    ],
+    "copy_edit/ngram_simple": [
+      {
+        "tps": 5.981954456026359,
+        "tokens": 215,
+        "draft_n": 452,
+        "draft_accepted": 86
+      },
+      {
+        "tps": 6.163318256820058,
+        "tokens": 215,
+        "draft_n": 452,
+        "draft_accepted": 86
+      },
+      {
+        "tps": 6.067828168066251,
+        "tokens": 215,
+        "draft_n": 452,
+        "draft_accepted": 86
+      }
+    ],
+    "code_gen/ngram_simple": [
+      {
+        "tps": 9.25796704338,
+        "tokens": 256,
+        "draft_n": 34,
+        "draft_accepted": 6
+      },
+      {
+        "tps": 9.332928052457643,
+        "tokens": 256,
+        "draft_n": 34,
+        "draft_accepted": 6
+      },
+      {
+        "tps": 9.155261604240229,
+        "tokens": 256,
+        "draft_n": 34,
+        "draft_accepted": 6
+      }
+    ],
+    "chat/ngram_simple": [
+      {
+        "tps": 9.314185559396288,
+        "tokens": 256,
+        "draft_n": null,
+        "draft_accepted": null
+      },
+      {
+        "tps": 9.362488686074947,
+        "tokens": 256,
+        "draft_n": null,
+        "draft_accepted": null
+      },
+      {
+        "tps": 9.487044789268552,
+        "tokens": 256,
+        "draft_n": null,
+        "draft_accepted": null
+      }
+    ]
+  },
+  "summary": {
+    "copy_edit/baseline": {
+      "tps": 8.38,
+      "speedup": 1.0
+    },
+    "code_gen/baseline": {
+      "tps": 8.75,
+      "speedup": 1.0
+    },
+    "chat/baseline": {
+      "tps": 8.66,
+      "speedup": 1.0
+    },
+    "copy_edit/draft_0.5b": {
+      "tps": 9.73,
+      "speedup": 1.16,
+      "accept_rate": 0.988
+    },
+    "code_gen/draft_0.5b": {
+      "tps": 8.48,
+      "speedup": 0.97,
+      "accept_rate": 0.785
+    },
+    "chat/draft_0.5b": {
+      "tps": 6.5,
+      "speedup": 0.75,
+      "accept_rate": 0.515
+    },
+    "copy_edit/ngram_simple": {
+      "tps": 6.07,
+      "speedup": 0.72,
+      "accept_rate": 0.19
+    },
+    "code_gen/ngram_simple": {
+      "tps": 9.26,
+      "speedup": 1.06,
+      "accept_rate": 0.176
+    },
+    "chat/ngram_simple": {
+      "tps": 9.36,
+      "speedup": 1.08
+    }
+  }
+}

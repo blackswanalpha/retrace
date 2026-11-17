@@ -1,0 +1,1392 @@
+{
+  "args": {
+    "model": "../models/qwen2.5-3b-instruct-q4_k_m.gguf",
+    "reps": 1,
+    "threads": 4,
+    "arms": "full,full_retrace,comp,comp_retrace",
+    "sets": "dev,heldout",
+    "tasks": null,
+    "k_max": 8,
+    "no_cache_prefix": false,
+    "seed": 0,
+    "out": "results_ops_3b.json"
+  },
+  "costs": [
+    1.0,
+    2.0103485248901944,
+    2.0724335152289908,
+    2.0724335152289908,
+    2.5707645795787664,
+    2.5707645795787664,
+    6.450161382564715,
+    6.450161382564715,
+    6.450161382564715
+  ],
+  "runs": [
+    {
+      "gen_tokens": 214,
+      "prefill_s": 17.169517418995383,
+      "decode_s": 28.252814516992657,
+      "e2e_s": 45.42233193598804,
+      "drafted": 186,
+      "accepted": 136,
+      "rep": 0,
+      "set": "dev",
+      "task": "rename_fn",
+      "arm": "full_retrace",
+      "eff_tokens": 210,
+      "correct": true,
+      "outcome": "full_correct",
+      "apply_error": null,
+      "ops": null,
+      "code": "def summarize_rows(rows, threshold):\n    \"\"\"Filter rows and compute summary statistics.\"\"\"\n    valid_rows = []\n    for row in rows:\n        if row[\"value\"] is None:\n            continue\n        if row[\"value\"] < threshold:\n            continue\n        valid_rows.append(row)\n    total = 0\n    for row in valid_rows:\n        total += row[\"value\"]\n    mean = total / len(valid_rows) if valid_rows else 0.0\n    largest = max((row[\"value\"] for row in valid_rows), default=0.0)\n    smallest = min((row[\"value\"] for row in valid_rows), default=0.0)\n    return {\n        \"count\": len(valid_rows),\n        \"total\": total,\n        \"mean\": mean,\n        \"largest\": largest,\n        \"smallest\": smallest,\n    }\n\n\ndef print_report(rows, threshold):\n    summary = summarize_rows(rows, threshold)\n    for key, value in summary.items():\n        print(f\"{key}: {value}\")"
+    },
+    {
+      "gen_tokens": 230,
+      "prefill_s": 13.719752970995614,
+      "decode_s": 28.71510236299946,
+      "e2e_s": 42.434855333995074,
+      "drafted": 211,
+      "accepted": 166,
+      "rep": 0,
+      "set": "heldout",
+      "task": "print_count",
+      "arm": "full_retrace",
+      "eff_tokens": 226,
+      "correct": false,
+      "outcome": "full_wrong",
+      "apply_error": null,
+      "ops": null,
+      "code": "def process_data(rows, threshold):\n    \"\"\"Filter rows and compute summary statistics.\"\"\"\n    kept = []\n    for row in rows:\n        if row[\"value\"] is None:\n            continue\n        if row[\"value\"] < threshold:\n            continue\n        kept.append(row)\n    total = 0\n    for row in kept:\n        total += row[\"value\"]\n    mean = total / len(kept) if kept else 0.0\n    largest = max((row[\"value\"] for row in kept), default=0.0)\n    smallest = min((row[\"value\"] for row in kept), default=0.0)\n    print(f\"Rows kept: {len(kept)}\")  # Print the number of rows kept\n    return {\n        \"count\": len(kept),\n        \"total\": total,\n        \"mean\": mean,\n        \"largest\": largest,\n        \"smallest\": smallest,\n    }\n\n\ndef print_report(rows, threshold):\n    summary = process_data(rows, threshold)\n    for key, value in summary.items():\n        print(f\"{key}: {value}\")"
+    },
+    {
+      "gen_tokens": 300,
+      "prefill_s": 17.780015172000276,
+      "decode_s": 43.19629482500022,
+      "e2e_s": 60.9763099970005,
+      "drafted": 0,
+      "accepted": 0,
+      "rep": 0,
+      "set": "heldout",
+      "task": "skip_zero",
+      "arm": "full",
+      "eff_tokens": 204,
+      "correct": false,
+      "outcome": "full_wrong",
+      "apply_error": null,
+      "ops": null,
+      "code": "def process_data(rows, threshold):\n    \"\"\"Filter rows and compute summary statistics.\"\"\"\n    kept = []\n    for row in rows:\n        if row[\"value\"] is None:\n            continue\n        if row[\"value\"] < threshold:\n            continue\n        kept.append(row)\n    total = 0\n    for row in kept:\n        total += row[\"value\"]\n    mean = total / len(kept) if kept else 0.0\n    largest = max((row[\"value\"] for row in kept), default=0.0)\n    smallest = min((row[\"value\"] for row in kept), default=0.0)\n    return {\n        \"count\": len(kept),\n        \"total\": total,\n        \"mean\": mean,\n        \"largest\": largest,\n        \"smallest\": smallest,\n    }\n\n\ndef print_report(rows, threshold):\n    summary = process_data(rows, threshold)\n    for key, value in summary.items():\n        print(f\"{key}: {value}\")"
+    },
+    {
+      "gen_tokens": 214,
+      "prefill_s": 12.619695071000024,
+      "decode_s": 28.596247820998542,
+      "e2e_s": 41.215942891998566,
+      "drafted": 0,
+      "accepted": 0,
+      "rep": 0,
+      "set": "dev",
+      "task": "rename_fn",
+      "arm": "full",
+      "eff_tokens": 210,
+      "correct": true,
+      "outcome": "full_correct",
+      "apply_error": null,
+      "ops": null,
+      "code": "def summarize_rows(rows, threshold):\n    \"\"\"Filter rows and compute summary statistics.\"\"\"\n    valid_rows = []\n    for row in rows:\n        if row[\"value\"] is None:\n            continue\n        if row[\"value\"] < threshold:\n            continue\n        valid_rows.append(row)\n    total = 0\n    for row in valid_rows:\n        total += row[\"value\"]\n    mean = total / len(valid_rows) if valid_rows else 0.0\n    largest = max((row[\"value\"] for row in valid_rows), default=0.0)\n    smallest = min((row[\"value\"] for row in valid_rows), default=0.0)\n    return {\n        \"count\": len(valid_rows),\n        \"total\": total,\n        \"mean\": mean,\n        \"largest\": largest,\n        \"smallest\": smallest,\n    }\n\n\ndef print_report(rows, threshold):\n    summary = summarize_rows(rows, threshold)\n    for key, value in summary.items():\n        print(f\"{key}: {value}\")"
+    },
+    {
+      "gen_tokens": 234,
+      "prefill_s": 10.452882486002636,
+      "decode_s": 37.714672664005775,
+      "e2e_s": 48.16755515000841,
+      "drafted": 0,
+      "accepted": 0,
+      "rep": 0,
+      "set": "heldout",
+      "task": "rename_vague",
+      "arm": "full",
+      "eff_tokens": 142,
+      "correct": true,
+      "outcome": "full_correct",
+      "apply_error": null,
+      "ops": null,
+      "code": "import json\nimport os\n\nDEFAULT_PORT = 8080\n\n\ndef read_config(path):\n    \"\"\"Read a JSON config file and fill in defaults.\"\"\"\n    if not os.path.exists(path):\n        return {\"port\": DEFAULT_PORT, \"debug\": False}\n    with open(path) as f:\n        data = json.load(f)\n    data.setdefault(\"port\", DEFAULT_PORT)\n    data.setdefault(\"debug\", False)\n    return data\n\n\ndef describe(config):\n    mode = \"debug\" if config[\"debug\"] else \"release\"\n    return f\"port {config['port']} in {mode} mode\"\n\n\ndef main():\n    config = read_config(\"app.json\")\n    print(describe(config))"
+    },
+    {
+      "gen_tokens": 10,
+      "prefill_s": 11.21129571000347,
+      "decode_s": 1.994644602003973,
+      "e2e_s": 13.205940312007442,
+      "drafted": 4,
+      "accepted": 1,
+      "rep": 0,
+      "set": "heldout",
+      "task": "rename_vague",
+      "arm": "comp_retrace",
+      "eff_tokens": 142,
+      "correct": true,
+      "outcome": "compressed_correct",
+      "apply_error": null,
+      "ops": "```edit\nrename load_config read_config\n```",
+      "code": "import json\nimport os\n\nDEFAULT_PORT = 8080\n\n\ndef read_config(path):\n    \"\"\"Read a JSON config file and fill in defaults.\"\"\"\n    if not os.path.exists(path):\n        return {\"port\": DEFAULT_PORT, \"debug\": False}\n    with open(path) as f:\n        data = json.load(f)\n    data.setdefault(\"port\", DEFAULT_PORT)\n    data.setdefault(\"debug\", False)\n    return data\n\n\ndef describe(config):\n    mode = \"debug\" if config[\"debug\"] else \"release\"\n    return f\"port {config['port']} in {mode} mode\"\n\n\ndef main():\n    config = read_config(\"app.json\")\n    print(describe(config))"
+    },
+    {
+      "gen_tokens": 27,
+      "prefill_s": 16.220824293006444,
+      "decode_s": 4.125110114997369,
+      "e2e_s": 20.345934408003814,
+      "drafted": 0,
+      "accepted": 0,
+      "rep": 0,
+      "set": "dev",
+      "task": "insert_lines",
+      "arm": "comp",
+      "eff_tokens": 200,
+      "correct": true,
+      "outcome": "compressed_correct",
+      "apply_error": null,
+      "ops": "```edit\ninsert_end __init__\nline: self.history = []\ninsert_end add_item\nline: self.history.append(name)\n```",
+      "code": "class Inventory:\n    \"\"\"Track item counts and prices.\"\"\"\n\n    def __init__(self):\n        self.items = {}\n        self.prices = {}\n        self.history = []\n\n    def add_item(self, name, count, price):\n        if count <= 0:\n            raise ValueError(\"count must be positive\")\n        self.items[name] = self.items.get(name, 0) + count\n        self.prices[name] = price\n        self.history.append(name)\n\n    def remove_item(self, name, count):\n        if name not in self.items:\n            raise KeyError(name)\n        self.items[name] -= count\n        if self.items[name] <= 0:\n            del self.items[name]\n            del self.prices[name]\n\n    def total_value(self):\n        return sum(self.items[n] * self.prices[n] for n in self.items)\n\n    def clear(self):\n        self.items = {}\n        self.prices = {}\n\n    def names(self):\n        return sorted(self.items)"
+    },
+    {
+      "gen_tokens": 162,
+      "prefill_s": 11.012879365996923,
+      "decode_s": 19.334439391997876,
+      "e2e_s": 30.3473187579948,
+      "drafted": 0,
+      "accepted": 0,
+      "rep": 0,
+      "set": "dev",
+      "task": "insert_lines",
+      "arm": "full",
+      "eff_tokens": 158,
+      "correct": false,
+      "outcome": "full_wrong",
+      "apply_error": null,
+      "ops": null,
+      "code": "class Inventory:\n    \"\"\"Track item counts and prices.\"\"\"\n\n    def __init__(self):\n        self.items = {}\n        self.prices = {}\n        self.history = []  # Add this line\n\n    def add_item(self, name, count, price):\n        if count <= 0:\n            raise ValueError(\"count must be positive\")\n        self.items[name] = self.items.get(name, 0) + count\n        self.prices[name] = price\n        self.history.append(name)  # Add this line\n\n    def total_value(self):\n        return sum(self.items[n] * self.prices[n] for n in self.items)\n\n    def clear(self):\n        self.items = {}\n        self.prices = {}\n\n    def names(self):\n        return sorted(self.items)"
+    },
+    {
+      "gen_tokens": 17,
+      "prefill_s": 16.297564663997036,
+      "decode_s": 3.2503253419999965,
+      "e2e_s": 19.547890005997033,
+      "drafted": 0,
+      "accepted": 0,
+      "rep": 0,
+      "set": "dev",
+      "task": "change_value",
+      "arm": "comp_retrace",
+      "eff_tokens": 195,
+      "correct": true,
+      "outcome": "compressed_correct",
+      "apply_error": null,
+      "ops": "```edit\nreplace\nold: 0.0\nnew: None\n```",
+      "code": "def process_data(rows, threshold):\n    \"\"\"Filter rows and compute summary statistics.\"\"\"\n    kept = []\n    for row in rows:\n        if row[\"value\"] is None:\n            continue\n        if row[\"value\"] < threshold:\n            continue\n        kept.append(row)\n    total = 0\n    for row in kept:\n        total += row[\"value\"]\n    mean = total / len(kept) if kept else None\n    largest = max((row[\"value\"] for row in kept), default=None)\n    smallest = min((row[\"value\"] for row in kept), default=None)\n    return {\n        \"count\": len(kept),\n        \"total\": total,\n        \"mean\": mean,\n        \"largest\": largest,\n        \"smallest\": smallest,\n    }\n\n\ndef print_report(rows, threshold):\n    summary = process_data(rows, threshold)\n    for key, value in summary.items():\n        print(f\"{key}: {value}\")"
+    },
+    {
+      "gen_tokens": 427,
+      "prefill_s": 11.423090418000356,
+      "decode_s": 112.64615810799296,
+      "e2e_s": 124.06924852599332,
+      "drafted": 0,
+      "accepted": 0,
+      "rep": 0,
+      "set": "heldout",
+      "task": "drop_unused",
+      "arm": "full",
+      "eff_tokens": 189,
+      "correct": false,
+      "outcome": "full_wrong",
+      "apply_error": null,
+      "ops": null,
+      "code": "class Inventory:\n    \"\"\"Track item counts and prices.\"\"\"\n\n    def __init__(self):\n        self.items = {}\n        self.prices = {}\n\n    def add_item(self, name, count, price):\n        if count <= 0:\n            raise ValueError(\"count must be positive\")\n        self.items[name] = self.items.get(name, 0) + count\n        self.prices[name] = price\n\n    def remove_item(self, name, count):\n        if name not in self.items:\n            raise KeyError(name)\n        self.items[name] -= count\n        if self.items[name] <= 0:\n            del self.items[name]\n            del self.prices[name]\n\n    def total_value(self):\n        return sum(self.items[n] * self.prices[n] for n in self.items)\n\n    def clear(self):\n        self.items = {}\n        self.prices = {}\n\n    def names(self):\n        return sorted(self.items)"
+    },
+    {
+      "gen_tokens": 214,
+      "prefill_s": 9.644798612003797,
+      "decode_s": 25.23215753599652,
+      "e2e_s": 34.87695614800032,
+      "drafted": 0,
+      "accepted": 0,
+      "rep": 0,
+      "set": "heldout",
+      "task": "guard_remove",
+      "arm": "full",
+      "eff_tokens": 210,
+      "correct": true,
+      "outcome": "full_correct",
+      "apply_error": null,
+      "ops": null,
+      "code": "class Inventory:\n    \"\"\"Track item counts and prices.\"\"\"\n\n    def __init__(self):\n        self.items = {}\n        self.prices = {}\n\n    def add_item(self, name, count, price):\n        if count <= 0:\n            raise ValueError(\"count must be positive\")\n        self.items[name] = self.items.get(name, 0) + count\n        self.prices[name] = price\n\n    def remove_item(self, name, count):\n        if name not in self.items:\n            raise KeyError(name)\n        if count <= 0:\n            return  # silently do nothing when count is zero or negative\n        self.items[name] -= count\n        if self.items[name] <= 0:\n            del self.items[name]\n            del self.prices[name]\n\n    def total_value(self):\n        return sum(self.items[n] * self.prices[n] for n in self.items)\n\n    def clear(self):\n        self.items = {}\n        self.prices = {}\n\n    def names(self):\n        return sorted(self.items)"
+    },
+    {
+      "gen_tokens": 27,
+      "prefill_s": 11.025709055000334,
+      "decode_s": 5.159455654997146,
+      "e2e_s": 16.18516470999748,
+      "drafted": 7,
+      "accepted": 5,
+      "rep": 0,
+      "set": "heldout",
+      "task": "guard_remove",
+      "arm": "comp_retrace",
+      "eff_tokens": 194,
+      "correct": false,
+      "outcome": "silent_wrong",
+      "apply_error": null,
+      "ops": "```edit\nreplace\nold: if count <= 0:\nnew: if count <= 0 or count < 0:\n```",
+      "code": "class Inventory:\n    \"\"\"Track item counts and prices.\"\"\"\n\n    def __init__(self):\n        self.items = {}\n        self.prices = {}\n\n    def add_item(self, name, count, price):\n        if count <= 0 or count < 0:\n            raise ValueError(\"count must be positive\")\n        self.items[name] = self.items.get(name, 0) + count\n        self.prices[name] = price\n\n    def remove_item(self, name, count):\n        if name not in self.items:\n            raise KeyError(name)\n        self.items[name] -= count\n        if self.items[name] <= 0:\n            del self.items[name]\n            del self.prices[name]\n\n    def total_value(self):\n        return sum(self.items[n] * self.prices[n] for n in self.items)\n\n    def clear(self):\n        self.items = {}\n        self.prices = {}\n\n    def names(self):\n        return sorted(self.items)"
+    },
+    {
+      "gen_tokens": 27,
+      "prefill_s": 13.83906005800236,
+      "decode_s": 4.5755012779991375,
+      "e2e_s": 18.414561336001498,
+      "drafted": 0,
+      "accepted": 0,
+      "rep": 0,
+      "set": "heldout",
+      "task": "guard_remove",
+      "arm": "comp",
+      "eff_tokens": 194,
+      "correct": false,
+      "outcome": "silent_wrong",
+      "apply_error": null,
+      "ops": "```edit\nreplace\nold: if count <= 0:\nnew: if count <= 0 or count < 0:\n```",
+      "code": "class Inventory:\n    \"\"\"Track item counts and prices.\"\"\"\n\n    def __init__(self):\n        self.items = {}\n        self.prices = {}\n\n    def add_item(self, name, count, price):\n        if count <= 0 or count < 0:\n            raise ValueError(\"count must be positive\")\n        self.items[name] = self.items.get(name, 0) + count\n        self.prices[name] = price\n\n    def remove_item(self, name, count):\n        if name not in self.items:\n            raise KeyError(name)\n        self.items[name] -= count\n        if self.items[name] <= 0:\n            del self.items[name]\n            del self.prices[name]\n\n    def total_value(self):\n        return sum(self.items[n] * self.prices[n] for n in self.items)\n\n    def clear(self):\n        self.items = {}\n        self.prices = {}\n\n    def names(self):\n        return sorted(self.items)"
+    },
+    {
+      "gen_tokens": 199,
+      "prefill_s": 14.423524439000175,
+      "decode_s": 21.528478448002716,
+      "e2e_s": 35.95200288700289,
+      "drafted": 176,
+      "accepted": 150,
+      "rep": 0,
+      "set": "dev",
+      "task": "change_value",
+      "arm": "full_retrace",
+      "eff_tokens": 195,
+      "correct": true,
+      "outcome": "full_correct",
+      "apply_error": null,
+      "ops": null,
+      "code": "def process_data(rows, threshold):\n    \"\"\"Filter rows and compute summary statistics.\"\"\"\n    kept = []\n    for row in rows:\n        if row[\"value\"] is None:\n            continue\n        if row[\"value\"] < threshold:\n            continue\n        kept.append(row)\n    total = 0\n    for row in kept:\n        total += row[\"value\"]\n    mean = total / len(kept) if kept else None\n    largest = max((row[\"value\"] for row in kept), default=None)\n    smallest = min((row[\"value\"] for row in kept), default=None)\n    return {\n        \"count\": len(kept),\n        \"total\": total,\n        \"mean\": mean,\n        \"largest\": largest,\n        \"smallest\": smallest,\n    }\n\n\ndef print_report(rows, threshold):\n    summary = process_data(rows, threshold)\n    for key, value in summary.items():\n        print(f\"{key}: {value}\")"
+    },
+    {
+      "gen_tokens": 48,
+      "prefill_s": 16.415037241997197,
+      "decode_s": 11.954069581013755,
+      "e2e_s": 28.369106823010952,
+      "drafted": 0,
+      "accepted": 0,
+      "rep": 0,
+      "set": "heldout",
+      "task": "doc_total",
+      "arm": "comp",
+      "eff_tokens": 224,
+      "correct": true,
+      "outcome": "compressed_correct",
+      "apply_error": null,
+      "ops": "```edit\ninsert_start total_value\nline: \"\"\"Return the combined worth of all stock.\"\"\"\nline: def total_value(self):\nline:     return sum(self.items[n] * self.prices[n] for n in self.items)\n```",
+      "code": "class Inventory:\n    \"\"\"Track item counts and prices.\"\"\"\n\n    def __init__(self):\n        self.items = {}\n        self.prices = {}\n\n    def add_item(self, name, count, price):\n        if count <= 0:\n            raise ValueError(\"count must be positive\")\n        self.items[name] = self.items.get(name, 0) + count\n        self.prices[name] = price\n\n    def remove_item(self, name, count):\n        if name not in self.items:\n            raise KeyError(name)\n        self.items[name] -= count\n        if self.items[name] <= 0:\n            del self.items[name]\n            del self.prices[name]\n\n    def total_value(self):\n        \"\"\"Return the combined worth of all stock.\"\"\"\n        def total_value(self):\n            return sum(self.items[n] * self.prices[n] for n in self.items)\n        return sum(self.items[n] * self.prices[n] for n in self.items)\n\n    def clear(self):\n        self.items = {}\n        self.prices = {}\n\n    def names(self):\n        return sorted(self.items)"
+    },
+    {
+      "gen_tokens": 12,
+      "prefill_s": 18.80202237899357,
+      "decode_s": 3.2159344800020335,
+      "e2e_s": 22.017956858995603,
+      "drafted": 6,
+      "accepted": 2,
+      "rep": 0,
+      "set": "dev",
+      "task": "rename_class",
+      "arm": "comp_retrace",
+      "eff_tokens": 200,
+      "correct": true,
+      "outcome": "compressed_correct",
+      "apply_error": null,
+      "ops": "```edit\nrename Inventory Stock\nrename items counts\n```",
+      "code": "class Stock:\n    \"\"\"Track item counts and prices.\"\"\"\n\n    def __init__(self):\n        self.counts = {}\n        self.prices = {}\n\n    def add_item(self, name, count, price):\n        if count <= 0:\n            raise ValueError(\"count must be positive\")\n        self.counts[name] = self.counts.get(name, 0) + count\n        self.prices[name] = price\n\n    def remove_item(self, name, count):\n        if name not in self.counts:\n            raise KeyError(name)\n        self.counts[name] -= count\n        if self.counts[name] <= 0:\n            del self.counts[name]\n            del self.prices[name]\n\n    def total_value(self):\n        return sum(self.counts[n] * self.prices[n] for n in self.counts)\n\n    def clear(self):\n        self.counts = {}\n        self.prices = {}\n\n    def names(self):\n        return sorted(self.counts)"
+    },
+    {
+      "gen_tokens": 232,
+      "prefill_s": 12.477336547002778,
+      "decode_s": 43.12269682499755,
+      "e2e_s": 55.600033372000325,
+      "drafted": 179,
+      "accepted": 136,
+      "rep": 0,
+      "set": "heldout",
+      "task": "rename_vague",
+      "arm": "full_retrace",
+      "eff_tokens": 142,
+      "correct": true,
+      "outcome": "full_correct",
+      "apply_error": null,
+      "ops": null,
+      "code": "import json\nimport os\n\nDEFAULT_PORT = 8080\n\n\ndef read_config(path):\n    \"\"\"Read a JSON config file and fill in defaults.\"\"\"\n    if not os.path.exists(path):\n        return {\"port\": DEFAULT_PORT, \"debug\": False}\n    with open(path) as f:\n        data = json.load(f)\n    data.setdefault(\"port\", DEFAULT_PORT)\n    data.setdefault(\"debug\", False)\n    return data\n\n\ndef describe(config):\n    mode = \"debug\" if config[\"debug\"] else \"release\"\n    return f\"port {config['port']} in {mode} mode\"\n\n\ndef main():\n    config = read_config(\"app.json\")\n    print(describe(config))"
+    },
+    {
+      "gen_tokens": 28,
+      "prefill_s": 15.96658688900061,
+      "decode_s": 7.227045441992232,
+      "e2e_s": 23.19363233099284,
+      "drafted": 21,
+      "accepted": 13,
+      "rep": 0,
+      "set": "heldout",
+      "task": "port_default",
+      "arm": "comp_retrace",
+      "eff_tokens": 142,
+      "correct": true,
+      "outcome": "compressed_correct",
+      "apply_error": null,
+      "ops": "```edit\nreplace\nold: DEFAULT_PORT = 8080\nnew: DEFAULT_PORT = 9090\n```",
+      "code": "import json\nimport os\n\nDEFAULT_PORT = 9090\n\n\ndef load_config(path):\n    \"\"\"Read a JSON config file and fill in defaults.\"\"\"\n    if not os.path.exists(path):\n        return {\"port\": DEFAULT_PORT, \"debug\": False}\n    with open(path) as f:\n        data = json.load(f)\n    data.setdefault(\"port\", DEFAULT_PORT)\n    data.setdefault(\"debug\", False)\n    return data\n\n\ndef describe(config):\n    mode = \"debug\" if config[\"debug\"] else \"release\"\n    return f\"port {config['port']} in {mode} mode\"\n\n\ndef main():\n    config = load_config(\"app.json\")\n    print(describe(config))"
+    },
+    {
+      "gen_tokens": 27,
+      "prefill_s": 17.377353435993427,
+      "decode_s": 6.0044615200022236,
+      "e2e_s": 23.38181495599565,
+      "drafted": 15,
+      "accepted": 2,
+      "rep": 0,
+      "set": "dev",
+      "task": "insert_lines",
+      "arm": "comp_retrace",
+      "eff_tokens": 200,
+      "correct": true,
+      "outcome": "compressed_correct",
+      "apply_error": null,
+      "ops": "```edit\ninsert_end __init__\nline: self.history = []\ninsert_end add_item\nline: self.history.append(name)\n```",
+      "code": "class Inventory:\n    \"\"\"Track item counts and prices.\"\"\"\n\n    def __init__(self):\n        self.items = {}\n        self.prices = {}\n        self.history = []\n\n    def add_item(self, name, count, price):\n        if count <= 0:\n            raise ValueError(\"count must be positive\")\n        self.items[name] = self.items.get(name, 0) + count\n        self.prices[name] = price\n        self.history.append(name)\n\n    def remove_item(self, name, count):\n        if name not in self.items:\n            raise KeyError(name)\n        self.items[name] -= count\n        if self.items[name] <= 0:\n            del self.items[name]\n            del self.prices[name]\n\n    def total_value(self):\n        return sum(self.items[n] * self.prices[n] for n in self.items)\n\n    def clear(self):\n        self.items = {}\n        self.prices = {}\n\n    def names(self):\n        return sorted(self.items)"
+    },
+    {
+      "gen_tokens": 12,
+      "prefill_s": 12.452248522007721,
+      "decode_s": 2.287941571994452,
+      "e2e_s": 14.740190094002173,
+      "drafted": 0,
+      "accepted": 0,
+      "rep": 0,
+      "set": "dev",
+      "task": "rename_class",
+      "arm": "comp",
+      "eff_tokens": 200,
+      "correct": true,
+      "outcome": "compressed_correct",
+      "apply_error": null,
+      "ops": "```edit\nrename Inventory Stock\nrename items counts\n```",
+      "code": "class Stock:\n    \"\"\"Track item counts and prices.\"\"\"\n\n    def __init__(self):\n        self.counts = {}\n        self.prices = {}\n\n    def add_item(self, name, count, price):\n        if count <= 0:\n            raise ValueError(\"count must be positive\")\n        self.counts[name] = self.counts.get(name, 0) + count\n        self.prices[name] = price\n\n    def remove_item(self, name, count):\n        if name not in self.counts:\n            raise KeyError(name)\n        self.counts[name] -= count\n        if self.counts[name] <= 0:\n            del self.counts[name]\n            del self.prices[name]\n\n    def total_value(self):\n        return sum(self.counts[n] * self.prices[n] for n in self.counts)\n\n    def clear(self):\n        self.counts = {}\n        self.prices = {}\n\n    def names(self):\n        return sorted(self.counts)"
+    },
+    {
+      "gen_tokens": 208,
+      "prefill_s": 13.39272870500281,
+      "decode_s": 27.708553076998214,
+      "e2e_s": 41.101281782001024,
+      "drafted": 193,
+      "accepted": 157,
+      "rep": 0,
+      "set": "heldout",
+      "task": "guard_remove",
+      "arm": "full_retrace",
+      "eff_tokens": 204,
+      "correct": true,
+      "outcome": "full_correct",
+      "apply_error": null,
+      "ops": null,
+      "code": "class Inventory:\n    \"\"\"Track item counts and prices.\"\"\"\n\n    def __init__(self):\n        self.items = {}\n        self.prices = {}\n\n    def add_item(self, name, count, price):\n        if count <= 0:\n            raise ValueError(\"count must be positive\")\n        self.items[name] = self.items.get(name, 0) + count\n        self.prices[name] = price\n\n    def remove_item(self, name, count):\n        if name not in self.items:\n            raise KeyError(name)\n        if count <= 0:\n            return  # silently do nothing\n        self.items[name] -= count\n        if self.items[name] <= 0:\n            del self.items[name]\n            del self.prices[name]\n\n    def total_value(self):\n        return sum(self.items[n] * self.prices[n] for n in self.items)\n\n    def clear(self):\n        self.items = {}\n        self.prices = {}\n\n    def names(self):\n        return sorted(self.items)"
+    },
+    {
+      "gen_tokens": 15,
+      "prefill_s": 19.58166603599966,
+      "decode_s": 4.341103162005311,
+      "e2e_s": 23.92276919800497,
+      "drafted": 6,
+      "accepted": 2,
+      "rep": 0,
+      "set": "dev",
+      "task": "rename_fn",
+      "arm": "comp_retrace",
+      "eff_tokens": 210,
+      "correct": true,
+      "outcome": "compressed_correct",
+      "apply_error": null,
+      "ops": "```edit\nrename process_data summarize_rows\nrename kept valid_rows\n```",
+      "code": "def summarize_rows(rows, threshold):\n    \"\"\"Filter rows and compute summary statistics.\"\"\"\n    valid_rows = []\n    for row in rows:\n        if row[\"value\"] is None:\n            continue\n        if row[\"value\"] < threshold:\n            continue\n        valid_rows.append(row)\n    total = 0\n    for row in valid_rows:\n        total += row[\"value\"]\n    mean = total / len(valid_rows) if valid_rows else 0.0\n    largest = max((row[\"value\"] for row in valid_rows), default=0.0)\n    smallest = min((row[\"value\"] for row in valid_rows), default=0.0)\n    return {\n        \"count\": len(valid_rows),\n        \"total\": total,\n        \"mean\": mean,\n        \"largest\": largest,\n        \"smallest\": smallest,\n    }\n\n\ndef print_report(rows, threshold):\n    summary = summarize_rows(rows, threshold)\n    for key, value in summary.items():\n        print(f\"{key}: {value}\")"
+    },
+    {
+      "gen_tokens": 204,
+      "prefill_s": 15.794495654001366,
+      "decode_s": 43.315656562990625,
+      "e2e_s": 59.11015221699199,
+      "drafted": 209,
+      "accepted": 137,
+      "rep": 0,
+      "set": "dev",
+      "task": "rename_class",
+      "arm": "full_retrace",
+      "eff_tokens": 200,
+      "correct": true,
+      "outcome": "full_correct",
+      "apply_error": null,
+      "ops": null,
+      "code": "class Stock:\n    \"\"\"Track item counts and prices.\"\"\"\n\n    def __init__(self):\n        self.counts = {}\n        self.prices = {}\n\n    def add_item(self, name, count, price):\n        if count <= 0:\n            raise ValueError(\"count must be positive\")\n        self.counts[name] = self.counts.get(name, 0) + count\n        self.prices[name] = price\n\n    def remove_item(self, name, count):\n        if name not in self.counts:\n            raise KeyError(name)\n        self.counts[name] -= count\n        if self.counts[name] <= 0:\n            del self.counts[name]\n            del self.prices[name]\n\n    def total_value(self):\n        return sum(self.counts[n] * self.prices[n] for n in self.counts)\n\n    def clear(self):\n        self.counts = {}\n        self.prices = {}\n\n    def names(self):\n        return sorted(self.counts)"
+    },
+    {
+      "gen_tokens": 202,
+      "prefill_s": 15.547108739003306,
+      "decode_s": 35.71533885899407,
+      "e2e_s": 51.26244759799738,
+      "drafted": 0,
+      "accepted": 0,
+      "rep": 0,
+      "set": "dev",
+      "task": "change_value",
+      "arm": "full",
+      "eff_tokens": 198,
+      "correct": false,
+      "outcome": "full_wrong",
+      "apply_error": null,
+      "ops": null,
+      "code": "def process_data(rows, threshold):\n    \"\"\"Filter rows and compute summary statistics.\"\"\"\n    kept = []\n    for row in rows:\n        if row[\"value\"] is None:\n            continue\n        if row[\"value\"] < threshold:\n            continue\n        kept.append(row)\n    total = 0\n    for row in kept:\n        total += row[\"value\"]\n    mean = total / len(kept) if kept else 0.0\n    largest = max((row[\"value\"] for row in kept), default=None)\n    smallest = min((row[\"value\"] for row in kept), default=None)\n    return {\n        \"count\": len(kept),\n        \"total\": total,\n        \"mean\": mean,\n        \"largest\": largest,\n        \"smallest\": smallest,\n    }\n\n\ndef print_report(rows, threshold):\n    summary = process_data(rows, threshold)\n    for key, value in summary.items():\n        print(f\"{key}: {value}\")"
+    },
+    {
+      "gen_tokens": 306,
+      "prefill_s": 35.94110151899804,
+      "decode_s": 37.622015430999454,
+      "e2e_s": 73.5631169499975,
+      "drafted": 209,
+      "accepted": 178,
+      "rep": 0,
+      "set": "heldout",
+      "task": "skip_zero",
+      "arm": "comp_retrace",
+      "eff_tokens": 204,
+      "correct": false,
+      "outcome": "fallback_wrong",
+      "apply_error": "model chose rewrite",
+      "ops": "```edit\nrewrite\n```",
+      "code": "def process_data(rows, threshold):\n    \"\"\"Filter rows and compute summary statistics.\"\"\"\n    kept = []\n    for row in rows:\n        if row[\"value\"] is None:\n            continue\n        if row[\"value\"] < threshold:\n            continue\n        kept.append(row)\n    total = 0\n    for row in kept:\n        total += row[\"value\"]\n    mean = total / len(kept) if kept else 0.0\n    largest = max((row[\"value\"] for row in kept), default=0.0)\n    smallest = min((row[\"value\"] for row in kept), default=0.0)\n    return {\n        \"count\": len(kept),\n        \"total\": total,\n        \"mean\": mean,\n        \"largest\": largest,\n        \"smallest\": smallest,\n    }\n\n\ndef print_report(rows, threshold):\n    summary = process_data(rows, threshold)\n    for key, value in summary.items():\n        print(f\"{key}: {value}\")"
+    },
+    {
+      "gen_tokens": 430,
+      "prefill_s": 13.62978594499873,
+      "decode_s": 59.527820706993225,
+      "e2e_s": 73.15760665199196,
+      "drafted": 382,
+      "accepted": 309,
+      "rep": 0,
+      "set": "heldout",
+      "task": "drop_unused",
+      "arm": "full_retrace",
+      "eff_tokens": 189,
+      "correct": false,
+      "outcome": "full_wrong",
+      "apply_error": null,
+      "ops": null,
+      "code": "class Inventory:\n    \"\"\"Track item counts and prices.\"\"\"\n\n    def __init__(self):\n        self.items = {}\n        self.prices = {}\n\n    def add_item(self, name, count, price):\n        if count <= 0:\n            raise ValueError(\"count must be positive\")\n        self.items[name] = self.items.get(name, 0) + count\n        self.prices[name] = price\n\n    def remove_item(self, name, count):\n        if name not in self.items:\n            raise KeyError(name)\n        self.items[name] -= count\n        if self.items[name] <= 0:\n            del self.items[name]\n            del self.prices[name]\n\n    def total_value(self):\n        return sum(self.items[n] * self.prices[n] for n in self.items)\n\n    def clear(self):\n        self.items = {}\n        self.prices = {}\n\n    def names(self):\n        return sorted(self.items)"
+    },
+    {
+      "gen_tokens": 308,
+      "prefill_s": 41.71253836501273,
+      "decode_s": 54.550224052989506,
+      "e2e_s": 96.26276241800224,
+      "drafted": 241,
+      "accepted": 184,
+      "rep": 0,
+      "set": "heldout",
+      "task": "skip_zero",
+      "arm": "comp",
+      "eff_tokens": 204,
+      "correct": false,
+      "outcome": "fallback_wrong",
+      "apply_error": "model chose rewrite",
+      "ops": "```edit\nrewrite\n```",
+      "code": "def process_data(rows, threshold):\n    \"\"\"Filter rows and compute summary statistics.\"\"\"\n    kept = []\n    for row in rows:\n        if row[\"value\"] is None:\n            continue\n        if row[\"value\"] < threshold:\n            continue\n        kept.append(row)\n    total = 0\n    for row in kept:\n        total += row[\"value\"]\n    mean = total / len(kept) if kept else 0.0\n    largest = max((row[\"value\"] for row in kept), default=0.0)\n    smallest = min((row[\"value\"] for row in kept), default=0.0)\n    return {\n        \"count\": len(kept),\n        \"total\": total,\n        \"mean\": mean,\n        \"largest\": largest,\n        \"smallest\": smallest,\n    }\n\n\ndef print_report(rows, threshold):\n    summary = process_data(rows, threshold)\n    for key, value in summary.items():\n        print(f\"{key}: {value}\")"
+    },
+    {
+      "gen_tokens": 177,
+      "prefill_s": 17.642294842007686,
+      "decode_s": 27.48576711799251,
+      "e2e_s": 45.128061960000196,
+      "drafted": 163,
+      "accepted": 140,
+      "rep": 0,
+      "set": "dev",
+      "task": "delete_method",
+      "arm": "full_retrace",
+      "eff_tokens": 173,
+      "correct": true,
+      "outcome": "full_correct",
+      "apply_error": null,
+      "ops": null,
+      "code": "class Inventory:\n    \"\"\"Track item counts and prices.\"\"\"\n\n    def __init__(self):\n        self.items = {}\n        self.prices = {}\n\n    def add_item(self, name, count, price):\n        if count <= 0:\n            raise ValueError(\"count must be positive\")\n        self.items[name] = self.items.get(name, 0) + count\n        self.prices[name] = price\n\n    def remove_item(self, name, count):\n        if name not in self.items:\n            raise KeyError(name)\n        self.items[name] -= count\n        if self.items[name] <= 0:\n            del self.items[name]\n            del self.prices[name]\n\n    def total_value(self):\n        return sum(self.items[n] * self.prices[n] for n in self.items)\n\n    def names(self):\n        return sorted(self.items)"
+    },
+    {
+      "gen_tokens": 21,
+      "prefill_s": 19.725252300995635,
+      "decode_s": 6.2537584970123135,
+      "e2e_s": 25.97901079800795,
+      "drafted": 16,
+      "accepted": 7,
+      "rep": 0,
+      "set": "heldout",
+      "task": "print_count",
+      "arm": "comp_retrace",
+      "eff_tokens": 210,
+      "correct": false,
+      "outcome": "silent_wrong",
+      "apply_error": null,
+      "ops": "```edit\ninsert_after\nanchor: total = 0\nline: print(len(kept))\n```",
+      "code": "def process_data(rows, threshold):\n    \"\"\"Filter rows and compute summary statistics.\"\"\"\n    kept = []\n    for row in rows:\n        if row[\"value\"] is None:\n            continue\n        if row[\"value\"] < threshold:\n            continue\n        kept.append(row)\n    total = 0\n    print(len(kept))\n    for row in kept:\n        total += row[\"value\"]\n    mean = total / len(kept) if kept else 0.0\n    largest = max((row[\"value\"] for row in kept), default=0.0)\n    smallest = min((row[\"value\"] for row in kept), default=0.0)\n    return {\n        \"count\": len(kept),\n        \"total\": total,\n        \"mean\": mean,\n        \"largest\": largest,\n        \"smallest\": smallest,\n    }\n\n\ndef print_report(rows, threshold):\n    summary = process_data(rows, threshold)\n    for key, value in summary.items():\n        print(f\"{key}: {value}\")"
+    },
+    {
+      "gen_tokens": 203,
+      "prefill_s": 18.666964903997723,
+      "decode_s": 29.935128990007797,
+      "e2e_s": 48.60209389400552,
+      "drafted": 189,
+      "accepted": 154,
+      "rep": 0,
+      "set": "heldout",
+      "task": "doc_total",
+      "arm": "full_retrace",
+      "eff_tokens": 199,
+      "correct": true,
+      "outcome": "full_correct",
+      "apply_error": null,
+      "ops": null,
+      "code": "class Inventory:\n    \"\"\"Track item counts and prices.\"\"\"\n\n    def __init__(self):\n        self.items = {}\n        self.prices = {}\n\n    def add_item(self, name, count, price):\n        if count <= 0:\n            raise ValueError(\"count must be positive\")\n        self.items[name] = self.items.get(name, 0) + count\n        self.prices[name] = price\n\n    def remove_item(self, name, count):\n        if name not in self.items:\n            raise KeyError(name)\n        self.items[name] -= count\n        if self.items[name] <= 0:\n            del self.items[name]\n            del self.prices[name]\n\n    def total_value(self):\n        \"\"\"Return the combined worth of all stock.\"\"\"\n        return sum(self.items[n] * self.prices[n] for n in self.items)\n\n    def clear(self):\n        self.items = {}\n        self.prices = {}\n\n    def names(self):\n        return sorted(self.items)"
+    },
+    {
+      "gen_tokens": 203,
+      "prefill_s": 19.942205430998,
+      "decode_s": 42.627090390000376,
+      "e2e_s": 62.56929582099838,
+      "drafted": 0,
+      "accepted": 0,
+      "rep": 0,
+      "set": "heldout",
+      "task": "doc_total",
+      "arm": "full",
+      "eff_tokens": 199,
+      "correct": true,
+      "outcome": "full_correct",
+      "apply_error": null,
+      "ops": null,
+      "code": "class Inventory:\n    \"\"\"Track item counts and prices.\"\"\"\n\n    def __init__(self):\n        self.items = {}\n        self.prices = {}\n\n    def add_item(self, name, count, price):\n        if count <= 0:\n            raise ValueError(\"count must be positive\")\n        self.items[name] = self.items.get(name, 0) + count\n        self.prices[name] = price\n\n    def remove_item(self, name, count):\n        if name not in self.items:\n            raise KeyError(name)\n        self.items[name] -= count\n        if self.items[name] <= 0:\n            del self.items[name]\n            del self.prices[name]\n\n    def total_value(self):\n        \"\"\"Return the combined worth of all stock.\"\"\"\n        return sum(self.items[n] * self.prices[n] for n in self.items)\n\n    def clear(self):\n        self.items = {}\n        self.prices = {}\n\n    def names(self):\n        return sorted(self.items)"
+    },
+    {
+      "gen_tokens": 17,
+      "prefill_s": 23.70068679700489,
+      "decode_s": 4.462635900999885,
+      "e2e_s": 28.163322698004777,
+      "drafted": 0,
+      "accepted": 0,
+      "rep": 0,
+      "set": "dev",
+      "task": "change_value",
+      "arm": "comp",
+      "eff_tokens": 195,
+      "correct": true,
+      "outcome": "compressed_correct",
+      "apply_error": null,
+      "ops": "```edit\nreplace\nold: 0.0\nnew: None\n```",
+      "code": "def process_data(rows, threshold):\n    \"\"\"Filter rows and compute summary statistics.\"\"\"\n    kept = []\n    for row in rows:\n        if row[\"value\"] is None:\n            continue\n        if row[\"value\"] < threshold:\n            continue\n        kept.append(row)\n    total = 0\n    for row in kept:\n        total += row[\"value\"]\n    mean = total / len(kept) if kept else None\n    largest = max((row[\"value\"] for row in kept), default=None)\n    smallest = min((row[\"value\"] for row in kept), default=None)\n    return {\n        \"count\": len(kept),\n        \"total\": total,\n        \"mean\": mean,\n        \"largest\": largest,\n        \"smallest\": smallest,\n    }\n\n\ndef print_report(rows, threshold):\n    summary = process_data(rows, threshold)\n    for key, value in summary.items():\n        print(f\"{key}: {value}\")"
+    },
+    {
+      "gen_tokens": 21,
+      "prefill_s": 23.131129799003247,
+      "decode_s": 6.110626847992535,
+      "e2e_s": 29.241756646995782,
+      "drafted": 0,
+      "accepted": 0,
+      "rep": 0,
+      "set": "heldout",
+      "task": "print_count",
+      "arm": "comp",
+      "eff_tokens": 210,
+      "correct": false,
+      "outcome": "silent_wrong",
+      "apply_error": null,
+      "ops": "```edit\ninsert_after\nanchor: total = 0\nline: print(len(kept))\n```",
+      "code": "def process_data(rows, threshold):\n    \"\"\"Filter rows and compute summary statistics.\"\"\"\n    kept = []\n    for row in rows:\n        if row[\"value\"] is None:\n            continue\n        if row[\"value\"] < threshold:\n            continue\n        kept.append(row)\n    total = 0\n    print(len(kept))\n    for row in kept:\n        total += row[\"value\"]\n    mean = total / len(kept) if kept else 0.0\n    largest = max((row[\"value\"] for row in kept), default=0.0)\n    smallest = min((row[\"value\"] for row in kept), default=0.0)\n    return {\n        \"count\": len(kept),\n        \"total\": total,\n        \"mean\": mean,\n        \"largest\": largest,\n        \"smallest\": smallest,\n    }\n\n\ndef print_report(rows, threshold):\n    summary = process_data(rows, threshold)\n    for key, value in summary.items():\n        print(f\"{key}: {value}\")"
+    },
+    {
+      "gen_tokens": 7,
+      "prefill_s": 19.41213323699776,
+      "decode_s": 1.9277968449896434,
+      "e2e_s": 21.339930081987404,
+      "drafted": 0,
+      "accepted": 0,
+      "rep": 0,
+      "set": "dev",
+      "task": "delete_method",
+      "arm": "comp",
+      "eff_tokens": 173,
+      "correct": true,
+      "outcome": "compressed_correct",
+      "apply_error": null,
+      "ops": "```edit\ndelete clear\n```",
+      "code": "class Inventory:\n    \"\"\"Track item counts and prices.\"\"\"\n\n    def __init__(self):\n        self.items = {}\n        self.prices = {}\n\n    def add_item(self, name, count, price):\n        if count <= 0:\n            raise ValueError(\"count must be positive\")\n        self.items[name] = self.items.get(name, 0) + count\n        self.prices[name] = price\n\n    def remove_item(self, name, count):\n        if name not in self.items:\n            raise KeyError(name)\n        self.items[name] -= count\n        if self.items[name] <= 0:\n            del self.items[name]\n            del self.prices[name]\n\n    def total_value(self):\n        return sum(self.items[n] * self.prices[n] for n in self.items)\n\n    def names(self):\n        return sorted(self.items)"
+    },
+    {
+      "gen_tokens": 204,
+      "prefill_s": 17.494117567010107,
+      "decode_s": 41.9258675549936,
+      "e2e_s": 59.41998512200371,
+      "drafted": 0,
+      "accepted": 0,
+      "rep": 0,
+      "set": "dev",
+      "task": "rename_class",
+      "arm": "full",
+      "eff_tokens": 200,
+      "correct": true,
+      "outcome": "full_correct",
+      "apply_error": null,
+      "ops": null,
+      "code": "class Stock:\n    \"\"\"Track item counts and prices.\"\"\"\n\n    def __init__(self):\n        self.counts = {}\n        self.prices = {}\n\n    def add_item(self, name, count, price):\n        if count <= 0:\n            raise ValueError(\"count must be positive\")\n        self.counts[name] = self.counts.get(name, 0) + count\n        self.prices[name] = price\n\n    def remove_item(self, name, count):\n        if name not in self.counts:\n            raise KeyError(name)\n        self.counts[name] -= count\n        if self.counts[name] <= 0:\n            del self.counts[name]\n            del self.prices[name]\n\n    def total_value(self):\n        return sum(self.counts[n] * self.prices[n] for n in self.counts)\n\n    def clear(self):\n        self.counts = {}\n        self.prices = {}\n\n    def names(self):\n        return sorted(self.counts)"
+    },
+    {
+      "gen_tokens": 48,
+      "prefill_s": 17.989742784004193,
+      "decode_s": 10.868906030998915,
+      "e2e_s": 28.858648815003107,
+      "drafted": 31,
+      "accepted": 17,
+      "rep": 0,
+      "set": "heldout",
+      "task": "doc_total",
+      "arm": "comp_retrace",
+      "eff_tokens": 224,
+      "correct": true,
+      "outcome": "compressed_correct",
+      "apply_error": null,
+      "ops": "```edit\ninsert_start total_value\nline: \"\"\"Return the combined worth of all stock.\"\"\"\nline: def total_value(self):\nline:     return sum(self.items[n] * self.prices[n] for n in self.items)\n```",
+      "code": "class Inventory:\n    \"\"\"Track item counts and prices.\"\"\"\n\n    def __init__(self):\n        self.items = {}\n        self.prices = {}\n\n    def add_item(self, name, count, price):\n        if count <= 0:\n            raise ValueError(\"count must be positive\")\n        self.items[name] = self.items.get(name, 0) + count\n        self.prices[name] = price\n\n    def remove_item(self, name, count):\n        if name not in self.items:\n            raise KeyError(name)\n        self.items[name] -= count\n        if self.items[name] <= 0:\n            del self.items[name]\n            del self.prices[name]\n\n    def total_value(self):\n        \"\"\"Return the combined worth of all stock.\"\"\"\n        def total_value(self):\n            return sum(self.items[n] * self.prices[n] for n in self.items)\n        return sum(self.items[n] * self.prices[n] for n in self.items)\n\n    def clear(self):\n        self.items = {}\n        self.prices = {}\n\n    def names(self):\n        return sorted(self.items)"
+    },
+    {
+      "gen_tokens": 162,
+      "prefill_s": 21.3468046420021,
+      "decode_s": 26.877291060998687,
+      "e2e_s": 48.224095703000785,
+      "drafted": 146,
+      "accepted": 116,
+      "rep": 0,
+      "set": "dev",
+      "task": "insert_lines",
+      "arm": "full_retrace",
+      "eff_tokens": 158,
+      "correct": false,
+      "outcome": "full_wrong",
+      "apply_error": null,
+      "ops": null,
+      "code": "class Inventory:\n    \"\"\"Track item counts and prices.\"\"\"\n\n    def __init__(self):\n        self.items = {}\n        self.prices = {}\n        self.history = []  # Add this line\n\n    def add_item(self, name, count, price):\n        if count <= 0:\n            raise ValueError(\"count must be positive\")\n        self.items[name] = self.items.get(name, 0) + count\n        self.prices[name] = price\n        self.history.append(name)  # Add this line\n\n    def total_value(self):\n        return sum(self.items[n] * self.prices[n] for n in self.items)\n\n    def clear(self):\n        self.items = {}\n        self.prices = {}\n\n    def names(self):\n        return sorted(self.items)"
+    },
+    {
+      "gen_tokens": 302,
+      "prefill_s": 16.941104006997193,
+      "decode_s": 43.879972655005986,
+      "e2e_s": 60.82107666200318,
+      "drafted": 237,
+      "accepted": 184,
+      "rep": 0,
+      "set": "heldout",
+      "task": "skip_zero",
+      "arm": "full_retrace",
+      "eff_tokens": 204,
+      "correct": false,
+      "outcome": "full_wrong",
+      "apply_error": null,
+      "ops": null,
+      "code": "def process_data(rows, threshold):\n    \"\"\"Filter rows and compute summary statistics.\"\"\"\n    kept = []\n    for row in rows:\n        if row[\"value\"] is None:\n            continue\n        if row[\"value\"] < threshold:\n            continue\n        kept.append(row)\n    total = 0\n    for row in kept:\n        total += row[\"value\"]\n    mean = total / len(kept) if kept else 0.0\n    largest = max((row[\"value\"] for row in kept), default=0.0)\n    smallest = min((row[\"value\"] for row in kept), default=0.0)\n    return {\n        \"count\": len(kept),\n        \"total\": total,\n        \"mean\": mean,\n        \"largest\": largest,\n        \"smallest\": smallest,\n    }\n\n\ndef print_report(rows, threshold):\n    summary = process_data(rows, threshold)\n    for key, value in summary.items():\n        print(f\"{key}: {value}\")"
+    },
+    {
+      "gen_tokens": 10,
+      "prefill_s": 10.82054832400172,
+      "decode_s": 1.6224572679930134,
+      "e2e_s": 12.443005591994734,
+      "drafted": 0,
+      "accepted": 0,
+      "rep": 0,
+      "set": "heldout",
+      "task": "rename_vague",
+      "arm": "comp",
+      "eff_tokens": 142,
+      "correct": true,
+      "outcome": "compressed_correct",
+      "apply_error": null,
+      "ops": "```edit\nrename load_config read_config\n```",
+      "code": "import json\nimport os\n\nDEFAULT_PORT = 8080\n\n\ndef read_config(path):\n    \"\"\"Read a JSON config file and fill in defaults.\"\"\"\n    if not os.path.exists(path):\n        return {\"port\": DEFAULT_PORT, \"debug\": False}\n    with open(path) as f:\n        data = json.load(f)\n    data.setdefault(\"port\", DEFAULT_PORT)\n    data.setdefault(\"debug\", False)\n    return data\n\n\ndef describe(config):\n    mode = \"debug\" if config[\"debug\"] else \"release\"\n    return f\"port {config['port']} in {mode} mode\"\n\n\ndef main():\n    config = read_config(\"app.json\")\n    print(describe(config))"
+    },
+    {
+      "gen_tokens": 7,
+      "prefill_s": 13.0577994040068,
+      "decode_s": 1.2481190859980416,
+      "e2e_s": 14.305918490004842,
+      "drafted": 0,
+      "accepted": 0,
+      "rep": 0,
+      "set": "heldout",
+      "task": "drop_unused",
+      "arm": "comp",
+      "eff_tokens": 178,
+      "correct": true,
+      "outcome": "compressed_correct",
+      "apply_error": null,
+      "ops": "```edit\ndelete names\n```",
+      "code": "class Inventory:\n    \"\"\"Track item counts and prices.\"\"\"\n\n    def __init__(self):\n        self.items = {}\n        self.prices = {}\n\n    def add_item(self, name, count, price):\n        if count <= 0:\n            raise ValueError(\"count must be positive\")\n        self.items[name] = self.items.get(name, 0) + count\n        self.prices[name] = price\n\n    def remove_item(self, name, count):\n        if name not in self.items:\n            raise KeyError(name)\n        self.items[name] -= count\n        if self.items[name] <= 0:\n            del self.items[name]\n            del self.prices[name]\n\n    def total_value(self):\n        return sum(self.items[n] * self.prices[n] for n in self.items)\n\n    def clear(self):\n        self.items = {}\n        self.prices = {}"
+    },
+    {
+      "gen_tokens": 7,
+      "prefill_s": 14.101142155996058,
+      "decode_s": 1.5542867570038652,
+      "e2e_s": 15.655428912999923,
+      "drafted": 6,
+      "accepted": 2,
+      "rep": 0,
+      "set": "dev",
+      "task": "delete_method",
+      "arm": "comp_retrace",
+      "eff_tokens": 173,
+      "correct": true,
+      "outcome": "compressed_correct",
+      "apply_error": null,
+      "ops": "```edit\ndelete clear\n```",
+      "code": "class Inventory:\n    \"\"\"Track item counts and prices.\"\"\"\n\n    def __init__(self):\n        self.items = {}\n        self.prices = {}\n\n    def add_item(self, name, count, price):\n        if count <= 0:\n            raise ValueError(\"count must be positive\")\n        self.items[name] = self.items.get(name, 0) + count\n        self.prices[name] = price\n\n    def remove_item(self, name, count):\n        if name not in self.items:\n            raise KeyError(name)\n        self.items[name] -= count\n        if self.items[name] <= 0:\n            del self.items[name]\n            del self.prices[name]\n\n    def total_value(self):\n        return sum(self.items[n] * self.prices[n] for n in self.items)\n\n    def names(self):\n        return sorted(self.items)"
+    },
+    {
+      "gen_tokens": 235,
+      "prefill_s": 11.477833154000109,
+      "decode_s": 28.3015791150101,
+      "e2e_s": 39.77941226901021,
+      "drafted": 163,
+      "accepted": 143,
+      "rep": 0,
+      "set": "heldout",
+      "task": "port_default",
+      "arm": "full_retrace",
+      "eff_tokens": 157,
+      "correct": false,
+      "outcome": "full_wrong",
+      "apply_error": null,
+      "ops": null,
+      "code": "import json\nimport os\n\nDEFAULT_PORT = 9090  # Changed from 8080 to 9090\n\n\ndef load_config(path):\n    \"\"\"Read a JSON config file and fill in defaults.\"\"\"\n    if not os.path.exists(path):\n        return {\"port\": DEFAULT_PORT, \"debug\": False}\n    with open(path) as f:\n        data = json.load(f)\n    data.setdefault(\"port\", DEFAULT_PORT)\n    data.setdefault(\"debug\", False)\n    return data\n\n\ndef describe(config):\n    mode = \"debug\" if config[\"debug\"] else \"release\"\n    return f\"port {config['port']} in {mode} mode\"\n\n\ndef main():\n    config = load_config(\"app.json\")\n    print(describe(config))"
+    },
+    {
+      "gen_tokens": 7,
+      "prefill_s": 15.53442225199251,
+      "decode_s": 1.951789318001829,
+      "e2e_s": 17.48621156999434,
+      "drafted": 6,
+      "accepted": 2,
+      "rep": 0,
+      "set": "heldout",
+      "task": "drop_unused",
+      "arm": "comp_retrace",
+      "eff_tokens": 178,
+      "correct": true,
+      "outcome": "compressed_correct",
+      "apply_error": null,
+      "ops": "```edit\ndelete names\n```",
+      "code": "class Inventory:\n    \"\"\"Track item counts and prices.\"\"\"\n\n    def __init__(self):\n        self.items = {}\n        self.prices = {}\n\n    def add_item(self, name, count, price):\n        if count <= 0:\n            raise ValueError(\"count must be positive\")\n        self.items[name] = self.items.get(name, 0) + count\n        self.prices[name] = price\n\n    def remove_item(self, name, count):\n        if name not in self.items:\n            raise KeyError(name)\n        self.items[name] -= count\n        if self.items[name] <= 0:\n            del self.items[name]\n            del self.prices[name]\n\n    def total_value(self):\n        return sum(self.items[n] * self.prices[n] for n in self.items)\n\n    def clear(self):\n        self.items = {}\n        self.prices = {}"
+    },
+    {
+      "gen_tokens": 230,
+      "prefill_s": 17.600458699002047,
+      "decode_s": 77.56145619000017,
+      "e2e_s": 95.16191488900222,
+      "drafted": 0,
+      "accepted": 0,
+      "rep": 0,
+      "set": "heldout",
+      "task": "print_count",
+      "arm": "full",
+      "eff_tokens": 226,
+      "correct": false,
+      "outcome": "full_wrong",
+      "apply_error": null,
+      "ops": null,
+      "code": "def process_data(rows, threshold):\n    \"\"\"Filter rows and compute summary statistics.\"\"\"\n    kept = []\n    for row in rows:\n        if row[\"value\"] is None:\n            continue\n        if row[\"value\"] < threshold:\n            continue\n        kept.append(row)\n    total = 0\n    for row in kept:\n        total += row[\"value\"]\n    mean = total / len(kept) if kept else 0.0\n    largest = max((row[\"value\"] for row in kept), default=0.0)\n    smallest = min((row[\"value\"] for row in kept), default=0.0)\n    print(f\"Rows kept: {len(kept)}\")  # Print the number of rows kept\n    return {\n        \"count\": len(kept),\n        \"total\": total,\n        \"mean\": mean,\n        \"largest\": largest,\n        \"smallest\": smallest,\n    }\n\n\ndef print_report(rows, threshold):\n    summary = process_data(rows, threshold)\n    for key, value in summary.items():\n        print(f\"{key}: {value}\")"
+    },
+    {
+      "gen_tokens": 177,
+      "prefill_s": 15.770617632995709,
+      "decode_s": 28.475051635003183,
+      "e2e_s": 44.24566926799889,
+      "drafted": 0,
+      "accepted": 0,
+      "rep": 0,
+      "set": "dev",
+      "task": "delete_method",
+      "arm": "full",
+      "eff_tokens": 173,
+      "correct": true,
+      "outcome": "full_correct",
+      "apply_error": null,
+      "ops": null,
+      "code": "class Inventory:\n    \"\"\"Track item counts and prices.\"\"\"\n\n    def __init__(self):\n        self.items = {}\n        self.prices = {}\n\n    def add_item(self, name, count, price):\n        if count <= 0:\n            raise ValueError(\"count must be positive\")\n        self.items[name] = self.items.get(name, 0) + count\n        self.prices[name] = price\n\n    def remove_item(self, name, count):\n        if name not in self.items:\n            raise KeyError(name)\n        self.items[name] -= count\n        if self.items[name] <= 0:\n            del self.items[name]\n            del self.prices[name]\n\n    def total_value(self):\n        return sum(self.items[n] * self.prices[n] for n in self.items)\n\n    def names(self):\n        return sorted(self.items)"
+    },
+    {
+      "gen_tokens": 15,
+      "prefill_s": 12.12162347199046,
+      "decode_s": 3.0605162480060244,
+      "e2e_s": 15.182139719996485,
+      "drafted": 0,
+      "accepted": 0,
+      "rep": 0,
+      "set": "dev",
+      "task": "rename_fn",
+      "arm": "comp",
+      "eff_tokens": 210,
+      "correct": true,
+      "outcome": "compressed_correct",
+      "apply_error": null,
+      "ops": "```edit\nrename process_data summarize_rows\nrename kept valid_rows\n```",
+      "code": "def summarize_rows(rows, threshold):\n    \"\"\"Filter rows and compute summary statistics.\"\"\"\n    valid_rows = []\n    for row in rows:\n        if row[\"value\"] is None:\n            continue\n        if row[\"value\"] < threshold:\n            continue\n        valid_rows.append(row)\n    total = 0\n    for row in valid_rows:\n        total += row[\"value\"]\n    mean = total / len(valid_rows) if valid_rows else 0.0\n    largest = max((row[\"value\"] for row in valid_rows), default=0.0)\n    smallest = min((row[\"value\"] for row in valid_rows), default=0.0)\n    return {\n        \"count\": len(valid_rows),\n        \"total\": total,\n        \"mean\": mean,\n        \"largest\": largest,\n        \"smallest\": smallest,\n    }\n\n\ndef print_report(rows, threshold):\n    summary = summarize_rows(rows, threshold)\n    for key, value in summary.items():\n        print(f\"{key}: {value}\")"
+    },
+    {
+      "gen_tokens": 28,
+      "prefill_s": 9.470637997001177,
+      "decode_s": 4.675271656000405,
+      "e2e_s": 14.145909653001581,
+      "drafted": 0,
+      "accepted": 0,
+      "rep": 0,
+      "set": "heldout",
+      "task": "port_default",
+      "arm": "comp",
+      "eff_tokens": 142,
+      "correct": true,
+      "outcome": "compressed_correct",
+      "apply_error": null,
+      "ops": "```edit\nreplace\nold: DEFAULT_PORT = 8080\nnew: DEFAULT_PORT = 9090\n```",
+      "code": "import json\nimport os\n\nDEFAULT_PORT = 9090\n\n\ndef load_config(path):\n    \"\"\"Read a JSON config file and fill in defaults.\"\"\"\n    if not os.path.exists(path):\n        return {\"port\": DEFAULT_PORT, \"debug\": False}\n    with open(path) as f:\n        data = json.load(f)\n    data.setdefault(\"port\", DEFAULT_PORT)\n    data.setdefault(\"debug\", False)\n    return data\n\n\ndef describe(config):\n    mode = \"debug\" if config[\"debug\"] else \"release\"\n    return f\"port {config['port']} in {mode} mode\"\n\n\ndef main():\n    config = load_config(\"app.json\")\n    print(describe(config))"
+    },
+    {
+      "gen_tokens": 235,
+      "prefill_s": 9.100721055001486,
+      "decode_s": 29.137372743003652,
+      "e2e_s": 38.23809379800514,
+      "drafted": 0,
+      "accepted": 0,
+      "rep": 0,
+      "set": "heldout",
+      "task": "port_default",
+      "arm": "full",
+      "eff_tokens": 157,
+      "correct": false,
+      "outcome": "full_wrong",
+      "apply_error": null,
+      "ops": null,
+      "code": "import json\nimport os\n\nDEFAULT_PORT = 9090  # Changed from 8080 to 9090\n\n\ndef load_config(path):\n    \"\"\"Read a JSON config file and fill in defaults.\"\"\"\n    if not os.path.exists(path):\n        return {\"port\": DEFAULT_PORT, \"debug\": False}\n    with open(path) as f:\n        data = json.load(f)\n    data.setdefault(\"port\", DEFAULT_PORT)\n    data.setdefault(\"debug\", False)\n    return data\n\n\ndef describe(config):\n    mode = \"debug\" if config[\"debug\"] else \"release\"\n    return f\"port {config['port']} in {mode} mode\"\n\n\ndef main():\n    config = load_config(\"app.json\")\n    print(describe(config))"
+    }
+  ],
+  "per_task": {
+    "dev/rename_fn/full_retrace": {
+      "outcomes": [
+        "full_correct"
+      ],
+      "eff_tps": 7.43,
+      "e2e_s": 45.4,
+      "gen_tokens": 214
+    },
+    "heldout/print_count/full_retrace": {
+      "outcomes": [
+        "full_wrong"
+      ],
+      "eff_tps": 7.87,
+      "e2e_s": 42.4,
+      "gen_tokens": 230
+    },
+    "heldout/skip_zero/full": {
+      "outcomes": [
+        "full_wrong"
+      ],
+      "eff_tps": 4.72,
+      "e2e_s": 61.0,
+      "gen_tokens": 300
+    },
+    "dev/rename_fn/full": {
+      "outcomes": [
+        "full_correct"
+      ],
+      "eff_tps": 7.34,
+      "e2e_s": 41.2,
+      "gen_tokens": 214
+    },
+    "heldout/rename_vague/full": {
+      "outcomes": [
+        "full_correct"
+      ],
+      "eff_tps": 3.77,
+      "e2e_s": 48.2,
+      "gen_tokens": 234
+    },
+    "heldout/rename_vague/comp_retrace": {
+      "outcomes": [
+        "compressed_correct"
+      ],
+      "eff_tps": 71.19,
+      "e2e_s": 13.2,
+      "gen_tokens": 10
+    },
+    "dev/insert_lines/comp": {
+      "outcomes": [
+        "compressed_correct"
+      ],
+      "eff_tps": 48.48,
+      "e2e_s": 20.3,
+      "gen_tokens": 27
+    },
+    "dev/insert_lines/full": {
+      "outcomes": [
+        "full_wrong"
+      ],
+      "eff_tps": 8.17,
+      "e2e_s": 30.3,
+      "gen_tokens": 162
+    },
+    "dev/change_value/comp_retrace": {
+      "outcomes": [
+        "compressed_correct"
+      ],
+      "eff_tps": 59.99,
+      "e2e_s": 19.5,
+      "gen_tokens": 17
+    },
+    "heldout/drop_unused/full": {
+      "outcomes": [
+        "full_wrong"
+      ],
+      "eff_tps": 1.68,
+      "e2e_s": 124.1,
+      "gen_tokens": 427
+    },
+    "heldout/guard_remove/full": {
+      "outcomes": [
+        "full_correct"
+      ],
+      "eff_tps": 8.32,
+      "e2e_s": 34.9,
+      "gen_tokens": 214
+    },
+    "heldout/guard_remove/comp_retrace": {
+      "outcomes": [
+        "silent_wrong"
+      ],
+      "eff_tps": 37.6,
+      "e2e_s": 16.2,
+      "gen_tokens": 27
+    },
+    "heldout/guard_remove/comp": {
+      "outcomes": [
+        "silent_wrong"
+      ],
+      "eff_tps": 42.4,
+      "e2e_s": 18.4,
+      "gen_tokens": 27
+    },
+    "dev/change_value/full_retrace": {
+      "outcomes": [
+        "full_correct"
+      ],
+      "eff_tps": 9.06,
+      "e2e_s": 36.0,
+      "gen_tokens": 199
+    },
+    "heldout/doc_total/comp": {
+      "outcomes": [
+        "compressed_correct"
+      ],
+      "eff_tps": 18.74,
+      "e2e_s": 28.4,
+      "gen_tokens": 48
+    },
+    "dev/rename_class/comp_retrace": {
+      "outcomes": [
+        "compressed_correct"
+      ],
+      "eff_tps": 62.19,
+      "e2e_s": 22.0,
+      "gen_tokens": 12
+    },
+    "heldout/rename_vague/full_retrace": {
+      "outcomes": [
+        "full_correct"
+      ],
+      "eff_tps": 3.29,
+      "e2e_s": 55.6,
+      "gen_tokens": 232
+    },
+    "heldout/port_default/comp_retrace": {
+      "outcomes": [
+        "compressed_correct"
+      ],
+      "eff_tps": 19.65,
+      "e2e_s": 23.2,
+      "gen_tokens": 28
+    },
+    "dev/insert_lines/comp_retrace": {
+      "outcomes": [
+        "compressed_correct"
+      ],
+      "eff_tps": 33.31,
+      "e2e_s": 23.4,
+      "gen_tokens": 27
+    },
+    "dev/rename_class/comp": {
+      "outcomes": [
+        "compressed_correct"
+      ],
+      "eff_tps": 87.41,
+      "e2e_s": 14.7,
+      "gen_tokens": 12
+    },
+    "heldout/guard_remove/full_retrace": {
+      "outcomes": [
+        "full_correct"
+      ],
+      "eff_tps": 7.36,
+      "e2e_s": 41.1,
+      "gen_tokens": 208
+    },
+    "dev/rename_fn/comp_retrace": {
+      "outcomes": [
+        "compressed_correct"
+      ],
+      "eff_tps": 48.37,
+      "e2e_s": 23.9,
+      "gen_tokens": 15
+    },
+    "dev/rename_class/full_retrace": {
+      "outcomes": [
+        "full_correct"
+      ],
+      "eff_tps": 4.62,
+      "e2e_s": 59.1,
+      "gen_tokens": 204
+    },
+    "dev/change_value/full": {
+      "outcomes": [
+        "full_wrong"
+      ],
+      "eff_tps": 5.54,
+      "e2e_s": 51.3,
+      "gen_tokens": 202
+    },
+    "heldout/skip_zero/comp_retrace": {
+      "outcomes": [
+        "fallback_wrong"
+      ],
+      "eff_tps": 5.42,
+      "e2e_s": 73.6,
+      "gen_tokens": 306
+    },
+    "heldout/drop_unused/full_retrace": {
+      "outcomes": [
+        "full_wrong"
+      ],
+      "eff_tps": 3.17,
+      "e2e_s": 73.2,
+      "gen_tokens": 430
+    },
+    "heldout/skip_zero/comp": {
+      "outcomes": [
+        "fallback_wrong"
+      ],
+      "eff_tps": 3.74,
+      "e2e_s": 96.3,
+      "gen_tokens": 308
+    },
+    "dev/delete_method/full_retrace": {
+      "outcomes": [
+        "full_correct"
+      ],
+      "eff_tps": 6.29,
+      "e2e_s": 45.1,
+      "gen_tokens": 177
+    },
+    "heldout/print_count/comp_retrace": {
+      "outcomes": [
+        "silent_wrong"
+      ],
+      "eff_tps": 33.58,
+      "e2e_s": 26.0,
+      "gen_tokens": 21
+    },
+    "heldout/doc_total/full_retrace": {
+      "outcomes": [
+        "full_correct"
+      ],
+      "eff_tps": 6.65,
+      "e2e_s": 48.6,
+      "gen_tokens": 203
+    },
+    "heldout/doc_total/full": {
+      "outcomes": [
+        "full_correct"
+      ],
+      "eff_tps": 4.67,
+      "e2e_s": 62.6,
+      "gen_tokens": 203
+    },
+    "dev/change_value/comp": {
+      "outcomes": [
+        "compressed_correct"
+      ],
+      "eff_tps": 43.7,
+      "e2e_s": 28.2,
+      "gen_tokens": 17
+    },
+    "heldout/print_count/comp": {
+      "outcomes": [
+        "silent_wrong"
+      ],
+      "eff_tps": 34.37,
+      "e2e_s": 29.2,
+      "gen_tokens": 21
+    },
+    "dev/delete_method/comp": {
+      "outcomes": [
+        "compressed_correct"
+      ],
+      "eff_tps": 89.74,
+      "e2e_s": 21.3,
+      "gen_tokens": 7
+    },
+    "dev/rename_class/full": {
+      "outcomes": [
+        "full_correct"
+      ],
+      "eff_tps": 4.77,
+      "e2e_s": 59.4,
+      "gen_tokens": 204
+    },
+    "heldout/doc_total/comp_retrace": {
+      "outcomes": [
+        "compressed_correct"
+      ],
+      "eff_tps": 20.61,
+      "e2e_s": 28.9,
+      "gen_tokens": 48
+    },
+    "dev/insert_lines/full_retrace": {
+      "outcomes": [
+        "full_wrong"
+      ],
+      "eff_tps": 5.88,
+      "e2e_s": 48.2,
+      "gen_tokens": 162
+    },
+    "heldout/skip_zero/full_retrace": {
+      "outcomes": [
+        "full_wrong"
+      ],
+      "eff_tps": 4.65,
+      "e2e_s": 60.8,
+      "gen_tokens": 302
+    },
+    "heldout/rename_vague/comp": {
+      "outcomes": [
+        "compressed_correct"
+      ],
+      "eff_tps": 87.52,
+      "e2e_s": 12.4,
+      "gen_tokens": 10
+    },
+    "heldout/drop_unused/comp": {
+      "outcomes": [
+        "compressed_correct"
+      ],
+      "eff_tps": 142.61,
+      "e2e_s": 14.3,
+      "gen_tokens": 7
+    },
+    "dev/delete_method/comp_retrace": {
+      "outcomes": [
+        "compressed_correct"
+      ],
+      "eff_tps": 111.31,
+      "e2e_s": 15.7,
+      "gen_tokens": 7
+    },
+    "heldout/port_default/full_retrace": {
+      "outcomes": [
+        "full_wrong"
+      ],
+      "eff_tps": 5.55,
+      "e2e_s": 39.8,
+      "gen_tokens": 235
+    },
+    "heldout/drop_unused/comp_retrace": {
+      "outcomes": [
+        "compressed_correct"
+      ],
+      "eff_tps": 91.2,
+      "e2e_s": 17.5,
+      "gen_tokens": 7
+    },
+    "heldout/print_count/full": {
+      "outcomes": [
+        "full_wrong"
+      ],
+      "eff_tps": 2.91,
+      "e2e_s": 95.2,
+      "gen_tokens": 230
+    },
+    "dev/delete_method/full": {
+      "outcomes": [
+        "full_correct"
+      ],
+      "eff_tps": 6.08,
+      "e2e_s": 44.2,
+      "gen_tokens": 177
+    },
+    "dev/rename_fn/comp": {
+      "outcomes": [
+        "compressed_correct"
+      ],
+      "eff_tps": 68.62,
+      "e2e_s": 15.2,
+      "gen_tokens": 15
+    },
+    "heldout/port_default/comp": {
+      "outcomes": [
+        "compressed_correct"
+      ],
+      "eff_tps": 30.37,
+      "e2e_s": 14.1,
+      "gen_tokens": 28
+    },
+    "heldout/port_default/full": {
+      "outcomes": [
+        "full_wrong"
+      ],
+      "eff_tps": 5.39,
+      "e2e_s": 38.2,
+      "gen_tokens": 235
+    }
+  },
+  "aggregate": {
+    "dev/full_retrace": {
+      "runs": 5,
+      "correct": 4,
+      "compressed_correct": 0,
+      "silent_wrong": 0,
+      "fallback_correct": 0,
+      "fallback_wrong": 0,
+      "eff_tps": 6.35,
+      "e2e_s_total": 233.8,
+      "speedup_decode": 1.04,
+      "speedup_e2e": 0.97,
+      "idle_equiv_tps": 9.4
+    },
+    "heldout/full_retrace": {
+      "runs": 7,
+      "correct": 3,
+      "compressed_correct": 0,
+      "silent_wrong": 0,
+      "fallback_correct": 0,
+      "fallback_wrong": 0,
+      "eff_tps": 5.06,
+      "e2e_s_total": 361.5,
+      "speedup_decode": 1.41,
+      "speedup_e2e": 1.28,
+      "idle_equiv_tps": 12.7
+    },
+    "heldout/full": {
+      "runs": 7,
+      "correct": 3,
+      "compressed_correct": 0,
+      "silent_wrong": 0,
+      "fallback_correct": 0,
+      "fallback_wrong": 0,
+      "eff_tps": 3.6,
+      "e2e_s_total": 464.1,
+      "speedup_decode": 1.0,
+      "speedup_e2e": 1.0,
+      "idle_equiv_tps": 9.0
+    },
+    "dev/full": {
+      "runs": 5,
+      "correct": 3,
+      "compressed_correct": 0,
+      "silent_wrong": 0,
+      "fallback_correct": 0,
+      "fallback_wrong": 0,
+      "eff_tps": 6.1,
+      "e2e_s_total": 226.5,
+      "speedup_decode": 1.0,
+      "speedup_e2e": 1.0,
+      "idle_equiv_tps": 9.0
+    },
+    "heldout/comp_retrace": {
+      "runs": 7,
+      "correct": 4,
+      "compressed_correct": 4,
+      "silent_wrong": 2,
+      "fallback_correct": 0,
+      "fallback_wrong": 1,
+      "eff_tps": 18.21,
+      "e2e_s_total": 198.5,
+      "speedup_decode": 5.06,
+      "speedup_e2e": 2.34,
+      "idle_equiv_tps": 45.7
+    },
+    "dev/comp": {
+      "runs": 5,
+      "correct": 5,
+      "compressed_correct": 5,
+      "silent_wrong": 0,
+      "fallback_correct": 0,
+      "fallback_wrong": 0,
+      "eff_tps": 61.65,
+      "e2e_s_total": 99.8,
+      "speedup_decode": 10.11,
+      "speedup_e2e": 2.27,
+      "idle_equiv_tps": 91.3
+    },
+    "dev/comp_retrace": {
+      "runs": 5,
+      "correct": 5,
+      "compressed_correct": 5,
+      "silent_wrong": 0,
+      "fallback_correct": 0,
+      "fallback_wrong": 0,
+      "eff_tps": 53.25,
+      "e2e_s_total": 104.5,
+      "speedup_decode": 8.73,
+      "speedup_e2e": 2.17,
+      "idle_equiv_tps": 78.8
+    },
+    "heldout/comp": {
+      "runs": 7,
+      "correct": 4,
+      "compressed_correct": 4,
+      "silent_wrong": 2,
+      "fallback_correct": 0,
+      "fallback_wrong": 1,
+      "eff_tps": 15.27,
+      "e2e_s_total": 213.2,
+      "speedup_decode": 4.24,
+      "speedup_e2e": 2.18,
+      "idle_equiv_tps": 38.3
+    }
+  },
+  "rejudged": {
+    "rule": "AST equality for reference tasks (comments ignored), last fenced block, nested duplicate def counts as wrong",
+    "heldout/port_default/full": "correct (AST equal, added comment only)",
+    "heldout/port_default/full_retrace": "correct (AST equal, added comment only)",
+    "heldout/drop_unused/full": "correct (edit was in the second code block; verified by rerun)",
+    "heldout/drop_unused/full_retrace": "likely correct (same 2-block pattern, 430 tokens; not rerun)",
+    "heldout/doc_total/comp": "silent_wrong (passed test but inserted a nested duplicate def total_value)",
+    "heldout/doc_total/comp_retrace": "silent_wrong (same ops as comp)"
+  }
+}

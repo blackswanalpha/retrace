@@ -1,0 +1,319 @@
+{
+  "args": {
+    "model": "models/qwen2.5-0.5b-instruct-q4_k_m.gguf",
+    "reps": 3,
+    "max_new": 256,
+    "threads": 4,
+    "out": "bench/results_0.5b.json",
+    "min_n": 2,
+    "max_n": 4,
+    "k_max": 8
+  },
+  "runs": [
+    {
+      "tokens": 208,
+      "tps": 24.993146296722443,
+      "rep": 0,
+      "workload": "copy_edit",
+      "arm": "baseline",
+      "first_diff": null
+    },
+    {
+      "tokens": 208,
+      "tps": 23.996472696575204,
+      "drafted": 300,
+      "accepted": 168,
+      "rep": 0,
+      "workload": "copy_edit",
+      "arm": "builtin_pld",
+      "first_diff": null
+    },
+    {
+      "tokens": 174,
+      "tps": 29.10558978522004,
+      "drafted": 170,
+      "accepted": 139,
+      "rep": 0,
+      "workload": "copy_edit",
+      "arm": "retrace",
+      "first_diff": 172
+    },
+    {
+      "tokens": 256,
+      "tps": 20.677770080057982,
+      "rep": 0,
+      "workload": "code_gen",
+      "arm": "baseline",
+      "first_diff": null
+    },
+    {
+      "tokens": 256,
+      "tps": 8.373056214465885,
+      "drafted": 1139,
+      "accepted": 35,
+      "rep": 0,
+      "workload": "code_gen",
+      "arm": "builtin_pld",
+      "first_diff": 146
+    },
+    {
+      "tokens": 256,
+      "tps": 25.382473671891745,
+      "drafted": 60,
+      "accepted": 21,
+      "rep": 0,
+      "workload": "code_gen",
+      "arm": "retrace",
+      "first_diff": 183
+    },
+    {
+      "tokens": 92,
+      "tps": 24.219760179657655,
+      "rep": 0,
+      "workload": "chat",
+      "arm": "baseline",
+      "first_diff": null
+    },
+    {
+      "tokens": 97,
+      "tps": 10.1728488565095,
+      "drafted": 393,
+      "accepted": 20,
+      "rep": 0,
+      "workload": "chat",
+      "arm": "builtin_pld",
+      "first_diff": 46
+    },
+    {
+      "tokens": 139,
+      "tps": 26.32723465658753,
+      "drafted": 39,
+      "accepted": 13,
+      "rep": 0,
+      "workload": "chat",
+      "arm": "retrace",
+      "first_diff": 6
+    },
+    {
+      "tokens": 208,
+      "tps": 26.850347185092236,
+      "rep": 1,
+      "workload": "copy_edit",
+      "arm": "baseline",
+      "first_diff": null
+    },
+    {
+      "tokens": 208,
+      "tps": 31.39648076922277,
+      "drafted": 300,
+      "accepted": 168,
+      "rep": 1,
+      "workload": "copy_edit",
+      "arm": "builtin_pld",
+      "first_diff": null
+    },
+    {
+      "tokens": 174,
+      "tps": 36.304544362972806,
+      "drafted": 170,
+      "accepted": 139,
+      "rep": 1,
+      "workload": "copy_edit",
+      "arm": "retrace",
+      "first_diff": 172
+    },
+    {
+      "tokens": 256,
+      "tps": 28.353181751397575,
+      "rep": 1,
+      "workload": "code_gen",
+      "arm": "baseline",
+      "first_diff": null
+    },
+    {
+      "tokens": 256,
+      "tps": 9.45382519086659,
+      "drafted": 1139,
+      "accepted": 35,
+      "rep": 1,
+      "workload": "code_gen",
+      "arm": "builtin_pld",
+      "first_diff": 146
+    },
+    {
+      "tokens": 256,
+      "tps": 20.667338097792676,
+      "drafted": 60,
+      "accepted": 21,
+      "rep": 1,
+      "workload": "code_gen",
+      "arm": "retrace",
+      "first_diff": 183
+    },
+    {
+      "tokens": 92,
+      "tps": 24.066304407739853,
+      "rep": 1,
+      "workload": "chat",
+      "arm": "baseline",
+      "first_diff": null
+    },
+    {
+      "tokens": 97,
+      "tps": 9.512975275542379,
+      "drafted": 393,
+      "accepted": 20,
+      "rep": 1,
+      "workload": "chat",
+      "arm": "builtin_pld",
+      "first_diff": 46
+    },
+    {
+      "tokens": 139,
+      "tps": 20.537148313471757,
+      "drafted": 39,
+      "accepted": 13,
+      "rep": 1,
+      "workload": "chat",
+      "arm": "retrace",
+      "first_diff": 6
+    },
+    {
+      "tokens": 208,
+      "tps": 27.785089566514973,
+      "rep": 2,
+      "workload": "copy_edit",
+      "arm": "baseline",
+      "first_diff": null
+    },
+    {
+      "tokens": 208,
+      "tps": 34.60212005466539,
+      "drafted": 300,
+      "accepted": 168,
+      "rep": 2,
+      "workload": "copy_edit",
+      "arm": "builtin_pld",
+      "first_diff": null
+    },
+    {
+      "tokens": 174,
+      "tps": 41.20372516002891,
+      "drafted": 170,
+      "accepted": 139,
+      "rep": 2,
+      "workload": "copy_edit",
+      "arm": "retrace",
+      "first_diff": 172
+    },
+    {
+      "tokens": 256,
+      "tps": 18.904683149509108,
+      "rep": 2,
+      "workload": "code_gen",
+      "arm": "baseline",
+      "first_diff": null
+    },
+    {
+      "tokens": 256,
+      "tps": 9.29335412024511,
+      "drafted": 1139,
+      "accepted": 35,
+      "rep": 2,
+      "workload": "code_gen",
+      "arm": "builtin_pld",
+      "first_diff": 146
+    },
+    {
+      "tokens": 256,
+      "tps": 27.78432031634915,
+      "drafted": 60,
+      "accepted": 21,
+      "rep": 2,
+      "workload": "code_gen",
+      "arm": "retrace",
+      "first_diff": 183
+    },
+    {
+      "tokens": 92,
+      "tps": 27.939250012363882,
+      "rep": 2,
+      "workload": "chat",
+      "arm": "baseline",
+      "first_diff": null
+    },
+    {
+      "tokens": 97,
+      "tps": 9.913216595779597,
+      "drafted": 393,
+      "accepted": 20,
+      "rep": 2,
+      "workload": "chat",
+      "arm": "builtin_pld",
+      "first_diff": 46
+    },
+    {
+      "tokens": 139,
+      "tps": 19.930879867469606,
+      "drafted": 39,
+      "accepted": 13,
+      "rep": 2,
+      "workload": "chat",
+      "arm": "retrace",
+      "first_diff": 6
+    }
+  ],
+  "summary": {
+    "copy_edit/baseline": {
+      "tps": 26.85,
+      "speedup": 1.0,
+      "lossless": true
+    },
+    "copy_edit/builtin_pld": {
+      "tps": 31.4,
+      "speedup": 1.17,
+      "accept_rate": 0.56,
+      "lossless": true
+    },
+    "copy_edit/retrace": {
+      "tps": 36.3,
+      "speedup": 1.35,
+      "accept_rate": 0.818,
+      "lossless": false
+    },
+    "code_gen/baseline": {
+      "tps": 20.68,
+      "speedup": 1.0,
+      "lossless": true
+    },
+    "code_gen/builtin_pld": {
+      "tps": 9.29,
+      "speedup": 0.45,
+      "accept_rate": 0.031,
+      "lossless": false
+    },
+    "code_gen/retrace": {
+      "tps": 25.38,
+      "speedup": 1.23,
+      "accept_rate": 0.35,
+      "lossless": false
+    },
+    "chat/baseline": {
+      "tps": 24.22,
+      "speedup": 1.0,
+      "lossless": true
+    },
+    "chat/builtin_pld": {
+      "tps": 9.91,
+      "speedup": 0.41,
+      "accept_rate": 0.051,
+      "lossless": false
+    },
+    "chat/retrace": {
+      "tps": 20.54,
+      "speedup": 0.85,
+      "accept_rate": 0.333,
+      "lossless": false
+    }
+  }
+}

@@ -1,0 +1,162 @@
+{
+  "args": {
+    "model": "../models/qwen2.5-3b-instruct-q4_k_m.gguf",
+    "reps": 1,
+    "max_new": 128,
+    "threads": 4,
+    "out": "smoke_3b.json",
+    "min_n": 2,
+    "max_n": 4,
+    "k_max": 8
+  },
+  "costs": [
+    1.0,
+    1.8125488251435131,
+    1.8602234314122763,
+    2.040894748539858,
+    2.8173140844746136,
+    3.223951204258899,
+    4.074716690335077,
+    4.527442470149314,
+    5.366008030854606
+  ],
+  "runs": [
+    {
+      "tokens": 128,
+      "tps": 4.747869296013464,
+      "rep": 0,
+      "workload": "copy_edit",
+      "arm": "baseline",
+      "first_diff": null
+    },
+    {
+      "tokens": 128,
+      "tps": 4.746025506205167,
+      "drafted": 240,
+      "accepted": 97,
+      "rep": 0,
+      "workload": "copy_edit",
+      "arm": "builtin_pld",
+      "first_diff": null
+    },
+    {
+      "tokens": 128,
+      "tps": 7.450825924075099,
+      "drafted": 67,
+      "accepted": 52,
+      "rep": 0,
+      "workload": "copy_edit",
+      "arm": "retrace",
+      "first_diff": null
+    },
+    {
+      "tokens": 128,
+      "tps": 6.410009033146401,
+      "rep": 0,
+      "workload": "code_gen",
+      "arm": "baseline",
+      "first_diff": null
+    },
+    {
+      "tokens": 128,
+      "tps": 2.818127156561036,
+      "drafted": 296,
+      "accepted": 30,
+      "rep": 0,
+      "workload": "code_gen",
+      "arm": "builtin_pld",
+      "first_diff": 34
+    },
+    {
+      "tokens": 128,
+      "tps": 8.011215135484901,
+      "drafted": 25,
+      "accepted": 17,
+      "rep": 0,
+      "workload": "code_gen",
+      "arm": "retrace",
+      "first_diff": 118
+    },
+    {
+      "tokens": 128,
+      "tps": 7.526643907544923,
+      "rep": 0,
+      "workload": "chat",
+      "arm": "baseline",
+      "first_diff": null
+    },
+    {
+      "tokens": 128,
+      "tps": 2.7680112276445015,
+      "drafted": 391,
+      "accepted": 18,
+      "rep": 0,
+      "workload": "chat",
+      "arm": "builtin_pld",
+      "first_diff": 53
+    },
+    {
+      "tokens": 128,
+      "tps": 7.057606514044605,
+      "drafted": 9,
+      "accepted": 7,
+      "rep": 0,
+      "workload": "chat",
+      "arm": "retrace",
+      "first_diff": 53
+    }
+  ],
+  "summary": {
+    "copy_edit/baseline": {
+      "tps": 4.75,
+      "speedup": 1.0,
+      "lossless": true
+    },
+    "copy_edit/builtin_pld": {
+      "tps": 4.75,
+      "speedup": 1.0,
+      "accept_rate": 0.404,
+      "lossless": true
+    },
+    "copy_edit/retrace": {
+      "tps": 7.45,
+      "speedup": 1.57,
+      "accept_rate": 0.776,
+      "lossless": true
+    },
+    "code_gen/baseline": {
+      "tps": 6.41,
+      "speedup": 1.0,
+      "lossless": true
+    },
+    "code_gen/builtin_pld": {
+      "tps": 2.82,
+      "speedup": 0.44,
+      "accept_rate": 0.101,
+      "lossless": false
+    },
+    "code_gen/retrace": {
+      "tps": 8.01,
+      "speedup": 1.25,
+      "accept_rate": 0.68,
+      "lossless": false
+    },
+    "chat/baseline": {
+      "tps": 7.53,
+      "speedup": 1.0,
+      "lossless": true
+    },
+    "chat/builtin_pld": {
+      "tps": 2.77,
+      "speedup": 0.37,
+      "accept_rate": 0.046,
+      "lossless": false
+    },
+    "chat/retrace": {
+      "tps": 7.06,
+      "speedup": 0.94,
+      "accept_rate": 0.778,
+      "lossless": false
+    }
+  }
+}

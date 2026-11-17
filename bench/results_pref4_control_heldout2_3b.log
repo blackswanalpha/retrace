@@ -1,0 +1,47 @@
+codec compress_pre_f4 11ebbac99db0 prefix 757
+{"set": "heldout", "task": "print_count", "outcome": "silent_wrong", "why": "ast_differs", "apply_error": null, "gen_tokens": 21, "decode_s": 3.2, "prefill_s": 11.5}
+```edit
+insert_after
+anchor: total = 0
+line: print(len(kept))
+```
+{"set": "heldout2", "task": "min_len", "outcome": "fallback", "why": null, "apply_error": "model chose rewrite", "gen_tokens": 6, "decode_s": 0.9, "prefill_s": 10.0}
+```edit
+rewrite
+```
+{"set": "heldout2", "task": "rename_pop", "outcome": "silent_wrong", "why": "ast_differs", "apply_error": null, "gen_tokens": 9, "decode_s": 1.6, "prefill_s": 9.4}
+```edit
+rename pop next_task
+```
+{"set": "heldout2", "task": "stop_with", "outcome": "fallback", "why": null, "apply_error": "model chose rewrite", "gen_tokens": 6, "decode_s": 1.0, "prefill_s": 10.4}
+```edit
+rewrite
+```
+{"set": "heldout2", "task": "top_guard", "outcome": "fallback", "why": null, "apply_error": "model chose rewrite", "gen_tokens": 6, "decode_s": 1.0, "prefill_s": 10.0}
+```edit
+rewrite
+```
+{"set": "heldout2", "task": "retry_limit", "outcome": "fallback", "why": null, "apply_error": "model chose rewrite", "gen_tokens": 6, "decode_s": 1.0, "prefill_s": 9.4}
+```edit
+rewrite
+```
+{"set": "heldout2", "task": "log_push", "outcome": "silent_wrong", "why": "test_failed: NameError: name 'task' is not defined", "apply_error": null, "gen_tokens": 19, "decode_s": 3.0, "prefill_s": 9.2}
+```edit
+insert_after
+anchor: def push
+line: print(task["name"])
+```
+{"set": "heldout2", "task": "doc_count", "outcome": "fallback", "why": null, "apply_error": "result does not parse: unterminated triple-quoted string literal (detected at line 32) (<unknown>, line 8)", "gen_tokens": 18, "decode_s": 2.7, "prefill_s": 10.8}
+```edit
+replace
+old: """Split text into lowercase words."""
+new: """
+```
+{"set": "heldout2", "task": "table_comp", "outcome": "fallback", "why": null, "apply_error": "model chose rewrite", "gen_tokens": 6, "decode_s": 1.1, "prefill_s": 10.5}
+```edit
+rewrite
+```
+{"set": "heldout2", "task": "drop_table", "outcome": "compressed_correct", "why": null, "apply_error": null, "gen_tokens": 8, "decode_s": 1.3, "prefill_s": 9.8}
+```edit
+delete format_table
+```

@@ -1,0 +1,163 @@
+verify cost by tokens per pass: [1.0, 1.75, 2.24, 2.24, 3.54, 3.62, 4.89, 6.42, 6.42]
+cached prefix tokens: {'full': 14, 'comp': 1073}
+{"gen_tokens": 206, "prefill_s": 18.17, "decode_s": 44.53, "e2e_s": 62.7, "drafted": 0, "accepted": 0, "rep": 0, "set": "heldout2", "task": "min_len", "arm": "full", "eff_tokens": 202, "correct": true, "outcome": "full_correct", "why": null, "f4_target": false, "apply_error": null}
+{"gen_tokens": 293, "prefill_s": 34.15, "decode_s": 48.92, "e2e_s": 83.07, "drafted": 164, "accepted": 137, "rep": 0, "set": "heldout2", "task": "retry_limit", "arm": "comp_retrace", "eff_tokens": 174, "correct": false, "outcome": "fallback_wrong", "why": "test_failed: AssertionError", "f4_target": true, "apply_error": "model chose rewrite"}
+```edit
+rewrite
+```
+{"gen_tokens": 20, "prefill_s": 20.85, "decode_s": 6.46, "e2e_s": 27.3, "drafted": 0, "accepted": 0, "rep": 0, "set": "heldout2", "task": "top_guard", "arm": "comp", "eff_tokens": 191, "correct": false, "outcome": "silent_wrong", "why": "test_failed: AssertionError", "f4_target": true, "apply_error": null}
+```edit
+replace top_words
+old: return ranked[:n]
+new: return ranked
+```
+{"gen_tokens": 263, "prefill_s": 17.95, "decode_s": 48.29, "e2e_s": 66.24, "drafted": 154, "accepted": 128, "rep": 0, "set": "heldout2", "task": "log_push", "arm": "full_retrace", "eff_tokens": 185, "correct": false, "outcome": "full_wrong", "why": "test_failed: AssertionError: 'Pushing task: a\\n'", "f4_target": true, "apply_error": null}
+{"gen_tokens": 284, "prefill_s": 31.93, "decode_s": 45.5, "e2e_s": 77.43, "drafted": 154, "accepted": 128, "rep": 0, "set": "heldout2", "task": "log_push", "arm": "comp", "eff_tokens": 185, "correct": false, "outcome": "fallback_wrong", "why": "test_failed: AssertionError: 'Pushing task: a\\n'", "f4_target": true, "apply_error": "edit reads undefined names [('push', 'task')]"}
+```edit
+insert_before push
+anchor: self.tasks.append
+line: print(task["name"])
+```
+{"gen_tokens": 265, "prefill_s": 18.64, "decode_s": 45.81, "e2e_s": 64.44, "drafted": 151, "accepted": 132, "rep": 0, "set": "heldout2", "task": "retry_limit", "arm": "full_retrace", "eff_tokens": 174, "correct": false, "outcome": "full_wrong", "why": "test_failed: AssertionError", "f4_target": true, "apply_error": null}
+{"gen_tokens": 207, "prefill_s": 20.64, "decode_s": 33.21, "e2e_s": 53.85, "drafted": 124, "accepted": 116, "rep": 0, "set": "heldout2", "task": "drop_table", "arm": "full_retrace", "eff_tokens": 154, "correct": true, "outcome": "full_correct", "why": null, "f4_target": false, "apply_error": null}
+{"gen_tokens": 199, "prefill_s": 40.72, "decode_s": 32.91, "e2e_s": 73.63, "drafted": 148, "accepted": 126, "rep": 0, "set": "heldout2", "task": "table_comp", "arm": "comp", "eff_tokens": 189, "correct": true, "outcome": "fallback_correct", "why": null, "f4_target": false, "apply_error": "model chose rewrite"}
+```edit
+rewrite
+```
+{"gen_tokens": 185, "prefill_s": 36.39, "decode_s": 41.16, "e2e_s": 77.56, "drafted": 147, "accepted": 130, "rep": 0, "set": "heldout2", "task": "rename_pop", "arm": "comp_retrace", "eff_tokens": 175, "correct": true, "outcome": "fallback_correct", "why": null, "f4_target": false, "apply_error": "model chose rewrite"}
+```edit
+rewrite
+```
+{"gen_tokens": 179, "prefill_s": 22.5, "decode_s": 57.63, "e2e_s": 80.13, "drafted": 135, "accepted": 125, "rep": 0, "set": "heldout2", "task": "rename_pop", "arm": "full_retrace", "eff_tokens": 175, "correct": true, "outcome": "full_correct", "why": null, "f4_target": false, "apply_error": null}
+{"gen_tokens": 203, "prefill_s": 31.06, "decode_s": 24.8, "e2e_s": 55.86, "drafted": 147, "accepted": 144, "rep": 0, "set": "heldout2", "task": "stop_with", "arm": "comp", "eff_tokens": 193, "correct": false, "outcome": "fallback_wrong", "why": "test_failed: AssertionError: {'with': 2, 'cats': 1}", "f4_target": false, "apply_error": "model chose rewrite"}
+```edit
+rewrite
+```
+{"gen_tokens": 207, "prefill_s": 12.89, "decode_s": 19.39, "e2e_s": 32.27, "drafted": 150, "accepted": 142, "rep": 0, "set": "heldout2", "task": "top_guard", "arm": "full_retrace", "eff_tokens": 203, "correct": true, "outcome": "full_correct", "why": null, "f4_target": true, "apply_error": null}
+{"gen_tokens": 8, "prefill_s": 13.92, "decode_s": 1.51, "e2e_s": 15.43, "drafted": 6, "accepted": 2, "rep": 0, "set": "heldout2", "task": "drop_table", "arm": "comp_retrace", "eff_tokens": 154, "correct": true, "outcome": "compressed_correct", "why": null, "f4_target": false, "apply_error": null}
+```edit
+delete format_table
+```
+{"gen_tokens": 206, "prefill_s": 13.17, "decode_s": 22.83, "e2e_s": 36.0, "drafted": 147, "accepted": 141, "rep": 0, "set": "heldout2", "task": "min_len", "arm": "full_retrace", "eff_tokens": 202, "correct": true, "outcome": "full_correct", "why": null, "f4_target": false, "apply_error": null}
+{"gen_tokens": 193, "prefill_s": 13.22, "decode_s": 27.43, "e2e_s": 40.64, "drafted": 0, "accepted": 0, "rep": 0, "set": "heldout2", "task": "table_comp", "arm": "full", "eff_tokens": 189, "correct": true, "outcome": "full_correct", "why": null, "f4_target": false, "apply_error": null}
+{"gen_tokens": 284, "prefill_s": 30.54, "decode_s": 100.05, "e2e_s": 130.59, "drafted": 192, "accepted": 136, "rep": 0, "set": "heldout2", "task": "log_push", "arm": "comp_retrace", "eff_tokens": 185, "correct": false, "outcome": "fallback_wrong", "why": "test_failed: AssertionError: 'Pushing task: a\\n'", "f4_target": true, "apply_error": "edit reads undefined names [('push', 'task')]"}
+```edit
+insert_before push
+anchor: self.tasks.append
+line: print(task["name"])
+```
+{"gen_tokens": 197, "prefill_s": 42.53, "decode_s": 48.95, "e2e_s": 91.48, "drafted": 0, "accepted": 0, "rep": 0, "set": "heldout2", "task": "stop_with", "arm": "full", "eff_tokens": 193, "correct": false, "outcome": "full_wrong", "why": "test_failed: AssertionError: {'with': 2, 'cats': 1}", "f4_target": false, "apply_error": null}
+{"gen_tokens": 212, "prefill_s": 42.6, "decode_s": 39.27, "e2e_s": 81.87, "drafted": 147, "accepted": 141, "rep": 0, "set": "heldout2", "task": "min_len", "arm": "comp_retrace", "eff_tokens": 202, "correct": true, "outcome": "fallback_correct", "why": null, "f4_target": false, "apply_error": "model chose rewrite"}
+```edit
+rewrite
+```
+{"gen_tokens": 263, "prefill_s": 21.03, "decode_s": 75.67, "e2e_s": 96.7, "drafted": 0, "accepted": 0, "rep": 0, "set": "heldout2", "task": "log_push", "arm": "full", "eff_tokens": 185, "correct": false, "outcome": "full_wrong", "why": "test_failed: AssertionError: 'Pushing task: a\\n'", "f4_target": true, "apply_error": null}
+{"gen_tokens": 293, "prefill_s": 60.5, "decode_s": 101.39, "e2e_s": 161.89, "drafted": 150, "accepted": 127, "rep": 0, "set": "heldout2", "task": "doc_count", "arm": "comp_retrace", "eff_tokens": 199, "correct": false, "outcome": "fallback_wrong", "why": "test_failed: AssertionError", "f4_target": true, "apply_error": "inserted lines redefine 'count_words'"}
+```edit
+insert_before count_words
+anchor: def count_words
+line: """Counts how often each word appears, leaving out stop words."""
+line: def count_words(text):
+line:     counts = {}
+line:     for word in tokenize(text):
+line:         if word in STOP_WORDS:
+line:             continue
+line:         counts[word] = counts.get(word, 0) + 1
+line:     return counts
+```
+{"gen_tokens": 179, "prefill_s": 19.85, "decode_s": 42.75, "e2e_s": 62.6, "drafted": 0, "accepted": 0, "rep": 0, "set": "heldout2", "task": "rename_pop", "arm": "full", "eff_tokens": 175, "correct": true, "outcome": "full_correct", "why": null, "f4_target": false, "apply_error": null}
+{"gen_tokens": 225, "prefill_s": 24.75, "decode_s": 187.64, "e2e_s": 212.39, "drafted": 0, "accepted": 0, "rep": 0, "set": "heldout2", "task": "drop_table", "arm": "full", "eff_tokens": 154, "correct": true, "outcome": "full_correct", "why": null, "f4_target": false, "apply_error": null}
+{"gen_tokens": 185, "prefill_s": 85.21, "decode_s": 170.65, "e2e_s": 255.86, "drafted": 135, "accepted": 125, "rep": 0, "set": "heldout2", "task": "rename_pop", "arm": "comp", "eff_tokens": 175, "correct": true, "outcome": "fallback_correct", "why": null, "f4_target": false, "apply_error": "model chose rewrite"}
+```edit
+rewrite
+```
+{"gen_tokens": 293, "prefill_s": 141.3, "decode_s": 712.5, "e2e_s": 853.81, "drafted": 160, "accepted": 137, "rep": 0, "set": "heldout2", "task": "retry_limit", "arm": "comp", "eff_tokens": 174, "correct": false, "outcome": "fallback_wrong", "why": "test_failed: AssertionError", "f4_target": true, "apply_error": "model chose rewrite"}
+```edit
+rewrite
+```
+{"gen_tokens": 203, "prefill_s": 116.53, "decode_s": 129.83, "e2e_s": 246.36, "drafted": 156, "accepted": 147, "rep": 0, "set": "heldout2", "task": "stop_with", "arm": "comp_retrace", "eff_tokens": 193, "correct": false, "outcome": "fallback_wrong", "why": "test_failed: AssertionError: {'with': 2, 'cats': 1}", "f4_target": false, "apply_error": "model chose rewrite"}
+```edit
+rewrite
+```
+{"gen_tokens": 20, "prefill_s": 102.79, "decode_s": 16.41, "e2e_s": 119.21, "drafted": 12, "accepted": 2, "rep": 0, "set": "heldout2", "task": "top_guard", "arm": "comp_retrace", "eff_tokens": 191, "correct": false, "outcome": "silent_wrong", "why": "test_failed: AssertionError", "f4_target": true, "apply_error": null}
+```edit
+replace top_words
+old: return ranked[:n]
+new: return ranked
+```
+{"gen_tokens": 197, "prefill_s": 22.13, "decode_s": 28.74, "e2e_s": 50.87, "drafted": 150, "accepted": 144, "rep": 0, "set": "heldout2", "task": "stop_with", "arm": "full_retrace", "eff_tokens": 193, "correct": false, "outcome": "full_wrong", "why": "test_failed: AssertionError: {'with': 2, 'cats': 1}", "f4_target": false, "apply_error": null}
+{"gen_tokens": 8, "prefill_s": 15.21, "decode_s": 1.67, "e2e_s": 16.88, "drafted": 0, "accepted": 0, "rep": 0, "set": "heldout2", "task": "drop_table", "arm": "comp", "eff_tokens": 154, "correct": true, "outcome": "compressed_correct", "why": null, "f4_target": false, "apply_error": null}
+```edit
+delete format_table
+```
+{"gen_tokens": 203, "prefill_s": 14.58, "decode_s": 40.38, "e2e_s": 54.95, "drafted": 134, "accepted": 121, "rep": 0, "set": "heldout2", "task": "doc_count", "arm": "full_retrace", "eff_tokens": 199, "correct": false, "outcome": "full_wrong", "why": "test_failed: AssertionError", "f4_target": true, "apply_error": null}
+{"gen_tokens": 193, "prefill_s": 13.14, "decode_s": 44.84, "e2e_s": 57.98, "drafted": 133, "accepted": 123, "rep": 0, "set": "heldout2", "task": "table_comp", "arm": "full_retrace", "eff_tokens": 189, "correct": true, "outcome": "full_correct", "why": null, "f4_target": false, "apply_error": null}
+{"gen_tokens": 207, "prefill_s": 10.09, "decode_s": 24.93, "e2e_s": 35.02, "drafted": 0, "accepted": 0, "rep": 0, "set": "heldout2", "task": "top_guard", "arm": "full", "eff_tokens": 203, "correct": true, "outcome": "full_correct", "why": null, "f4_target": true, "apply_error": null}
+{"gen_tokens": 199, "prefill_s": 20.27, "decode_s": 15.49, "e2e_s": 35.76, "drafted": 147, "accepted": 132, "rep": 0, "set": "heldout2", "task": "table_comp", "arm": "comp_retrace", "eff_tokens": 189, "correct": true, "outcome": "fallback_correct", "why": null, "f4_target": false, "apply_error": "model chose rewrite"}
+```edit
+rewrite
+```
+{"gen_tokens": 304, "prefill_s": 9.27, "decode_s": 35.87, "e2e_s": 45.14, "drafted": 0, "accepted": 0, "rep": 0, "set": "heldout2", "task": "retry_limit", "arm": "full", "eff_tokens": 174, "correct": false, "outcome": "full_wrong", "why": "test_failed: AssertionError", "f4_target": true, "apply_error": null}
+{"gen_tokens": 212, "prefill_s": 20.34, "decode_s": 16.14, "e2e_s": 36.47, "drafted": 145, "accepted": 142, "rep": 0, "set": "heldout2", "task": "min_len", "arm": "comp", "eff_tokens": 202, "correct": true, "outcome": "fallback_correct", "why": null, "f4_target": false, "apply_error": "model chose rewrite"}
+```edit
+rewrite
+```
+{"gen_tokens": 347, "prefill_s": 20.76, "decode_s": 37.73, "e2e_s": 58.5, "drafted": 181, "accepted": 141, "rep": 0, "set": "heldout2", "task": "doc_count", "arm": "comp", "eff_tokens": 253, "correct": true, "outcome": "fallback_correct", "why": null, "f4_target": true, "apply_error": "inserted lines redefine 'count_words'"}
+```edit
+insert_before count_words
+anchor: def count_words
+line: """Counts how often each word appears, leaving out stop words."""
+line: def count_words(text):
+line:     counts = {}
+line:     for word in tokenize(text):
+line:         if word in STOP_WORDS:
+line:             continue
+line:         counts[word] = counts.get(word, 0) + 1
+line:     return counts
+```
+{"gen_tokens": 255, "prefill_s": 10.18, "decode_s": 29.9, "e2e_s": 40.08, "drafted": 0, "accepted": 0, "rep": 0, "set": "heldout2", "task": "doc_count", "arm": "full", "eff_tokens": 251, "correct": true, "outcome": "full_correct", "why": null, "f4_target": true, "apply_error": null}
+
+PER TASK (eff_tps = final code tokens / decode s, fallbacks included)
+heldout2/min_len/full                    {'outcomes': ['full_correct'], 'eff_tps': 4.54, 'e2e_s': 62.7, 'gen_tokens': 206}
+heldout2/retry_limit/comp_retrace        {'outcomes': ['fallback_wrong'], 'eff_tps': 3.56, 'e2e_s': 83.1, 'gen_tokens': 293}
+heldout2/top_guard/comp                  {'outcomes': ['silent_wrong'], 'eff_tps': 29.58, 'e2e_s': 27.3, 'gen_tokens': 20}
+heldout2/log_push/full_retrace           {'outcomes': ['full_wrong'], 'eff_tps': 3.83, 'e2e_s': 66.2, 'gen_tokens': 263}
+heldout2/log_push/comp                   {'outcomes': ['fallback_wrong'], 'eff_tps': 4.07, 'e2e_s': 77.4, 'gen_tokens': 284}
+heldout2/retry_limit/full_retrace        {'outcomes': ['full_wrong'], 'eff_tps': 3.8, 'e2e_s': 64.4, 'gen_tokens': 265}
+heldout2/drop_table/full_retrace         {'outcomes': ['full_correct'], 'eff_tps': 4.64, 'e2e_s': 53.8, 'gen_tokens': 207}
+heldout2/table_comp/comp                 {'outcomes': ['fallback_correct'], 'eff_tps': 5.74, 'e2e_s': 73.6, 'gen_tokens': 199}
+heldout2/rename_pop/comp_retrace         {'outcomes': ['fallback_correct'], 'eff_tps': 4.25, 'e2e_s': 77.6, 'gen_tokens': 185}
+heldout2/rename_pop/full_retrace         {'outcomes': ['full_correct'], 'eff_tps': 3.04, 'e2e_s': 80.1, 'gen_tokens': 179}
+heldout2/stop_with/comp                  {'outcomes': ['fallback_wrong'], 'eff_tps': 7.78, 'e2e_s': 55.9, 'gen_tokens': 203}
+heldout2/top_guard/full_retrace          {'outcomes': ['full_correct'], 'eff_tps': 10.47, 'e2e_s': 32.3, 'gen_tokens': 207}
+heldout2/drop_table/comp_retrace         {'outcomes': ['compressed_correct'], 'eff_tps': 101.75, 'e2e_s': 15.4, 'gen_tokens': 8}
+heldout2/min_len/full_retrace            {'outcomes': ['full_correct'], 'eff_tps': 8.85, 'e2e_s': 36.0, 'gen_tokens': 206}
+heldout2/table_comp/full                 {'outcomes': ['full_correct'], 'eff_tps': 6.89, 'e2e_s': 40.6, 'gen_tokens': 193}
+heldout2/log_push/comp_retrace           {'outcomes': ['fallback_wrong'], 'eff_tps': 1.85, 'e2e_s': 130.6, 'gen_tokens': 284}
+heldout2/stop_with/full                  {'outcomes': ['full_wrong'], 'eff_tps': 3.94, 'e2e_s': 91.5, 'gen_tokens': 197}
+heldout2/min_len/comp_retrace            {'outcomes': ['fallback_correct'], 'eff_tps': 5.14, 'e2e_s': 81.9, 'gen_tokens': 212}
+heldout2/log_push/full                   {'outcomes': ['full_wrong'], 'eff_tps': 2.44, 'e2e_s': 96.7, 'gen_tokens': 263}
+heldout2/doc_count/comp_retrace          {'outcomes': ['fallback_wrong'], 'eff_tps': 1.96, 'e2e_s': 161.9, 'gen_tokens': 293}
+heldout2/rename_pop/full                 {'outcomes': ['full_correct'], 'eff_tps': 4.09, 'e2e_s': 62.6, 'gen_tokens': 179}
+heldout2/drop_table/full                 {'outcomes': ['full_correct'], 'eff_tps': 0.82, 'e2e_s': 212.4, 'gen_tokens': 225}
+heldout2/rename_pop/comp                 {'outcomes': ['fallback_correct'], 'eff_tps': 1.03, 'e2e_s': 255.9, 'gen_tokens': 185}
+heldout2/retry_limit/comp                {'outcomes': ['fallback_wrong'], 'eff_tps': 0.24, 'e2e_s': 853.8, 'gen_tokens': 293}
+heldout2/stop_with/comp_retrace          {'outcomes': ['fallback_wrong'], 'eff_tps': 1.49, 'e2e_s': 246.4, 'gen_tokens': 203}
+heldout2/top_guard/comp_retrace          {'outcomes': ['silent_wrong'], 'eff_tps': 11.64, 'e2e_s': 119.2, 'gen_tokens': 20}
+heldout2/stop_with/full_retrace          {'outcomes': ['full_wrong'], 'eff_tps': 6.71, 'e2e_s': 50.9, 'gen_tokens': 197}
+heldout2/drop_table/comp                 {'outcomes': ['compressed_correct'], 'eff_tps': 92.37, 'e2e_s': 16.9, 'gen_tokens': 8}
+heldout2/doc_count/full_retrace          {'outcomes': ['full_wrong'], 'eff_tps': 4.93, 'e2e_s': 55.0, 'gen_tokens': 203}
+heldout2/table_comp/full_retrace         {'outcomes': ['full_correct'], 'eff_tps': 4.21, 'e2e_s': 58.0, 'gen_tokens': 193}
+heldout2/top_guard/full                  {'outcomes': ['full_correct'], 'eff_tps': 8.14, 'e2e_s': 35.0, 'gen_tokens': 207}
+heldout2/table_comp/comp_retrace         {'outcomes': ['fallback_correct'], 'eff_tps': 12.2, 'e2e_s': 35.8, 'gen_tokens': 199}
+heldout2/retry_limit/full                {'outcomes': ['full_wrong'], 'eff_tps': 4.85, 'e2e_s': 45.1, 'gen_tokens': 304}
+heldout2/min_len/comp                    {'outcomes': ['fallback_correct'], 'eff_tps': 12.52, 'e2e_s': 36.5, 'gen_tokens': 212}
+heldout2/doc_count/comp                  {'outcomes': ['fallback_correct'], 'eff_tps': 6.71, 'e2e_s': 58.5, 'gen_tokens': 347}
+heldout2/doc_count/full                  {'outcomes': ['full_correct'], 'eff_tps': 8.4, 'e2e_s': 40.1, 'gen_tokens': 255}
+
+AGGREGATE (sums over every run; speedups vs `full` on the same set)
+idle_equiv_tps = speedup_decode x 9.03 tok/s idle baseline
+heldout2/full          {'runs': 9, 'correct': 6, 'correct_f4_targets': '2/4', 'compressed_correct': 0, 'silent_wrong': 0, 'fallback_correct': 0, 'fallback_wrong': 0, 'eff_tps': 3.33, 'e2e_s_total': 686.8, 'speedup_decode': 1.0, 'speedup_e2e': 1.0, 'idle_equiv_tps': 9.0}
+heldout2/comp_retrace  {'runs': 9, 'correct': 4, 'correct_f4_targets': '0/4', 'compressed_correct': 1, 'silent_wrong': 1, 'fallback_correct': 3, 'fallback_wrong': 4, 'eff_tps': 3.36, 'e2e_s_total': 951.7, 'speedup_decode': 1.01, 'speedup_e2e': 0.72, 'idle_equiv_tps': 9.1}
+heldout2/comp          {'runs': 9, 'correct': 5, 'correct_f4_targets': '1/4', 'compressed_correct': 1, 'silent_wrong': 1, 'fallback_correct': 4, 'fallback_wrong': 3, 'eff_tps': 1.64, 'e2e_s_total': 1455.7, 'speedup_decode': 0.49, 'speedup_e2e': 0.47, 'idle_equiv_tps': 4.4}
+heldout2/full_retrace  {'runs': 9, 'correct': 5, 'correct_f4_targets': '1/4', 'compressed_correct': 0, 'silent_wrong': 0, 'fallback_correct': 0, 'fallback_wrong': 0, 'eff_tps': 4.91, 'e2e_s_total': 496.7, 'speedup_decode': 1.47, 'speedup_e2e': 1.38, 'idle_equiv_tps': 13.3}

@@ -1,0 +1,137 @@
+{
+  "codec": "53aacc273b3a3b8a0d00c9edee28132b991b270d9fe2e45b07aabf93eddb2f7a",
+  "runs": [
+    {
+      "set": "dev",
+      "task": "rename_fn",
+      "outcome": "compressed_correct",
+      "why": null,
+      "apply_error": null,
+      "gen_tokens": 15,
+      "decode_s": 4.4,
+      "prefill_s": 23.9,
+      "ops": "```edit\nrename process_data summarize_rows\nrename kept valid_rows\n```"
+    },
+    {
+      "set": "dev",
+      "task": "change_value",
+      "outcome": "fallback",
+      "why": null,
+      "apply_error": "replace: '0.0' not found in print_report",
+      "gen_tokens": 34,
+      "decode_s": 10.2,
+      "prefill_s": 21.7,
+      "ops": "```edit\nreplace process_data\nold: 0.0\nnew: None\nreplace print_report\nold: 0.0\nnew: None\n```"
+    },
+    {
+      "set": "dev",
+      "task": "rename_class",
+      "outcome": "compressed_correct",
+      "why": null,
+      "apply_error": null,
+      "gen_tokens": 12,
+      "decode_s": 3.3,
+      "prefill_s": 19.5,
+      "ops": "```edit\nrename Inventory Stock\nrename items counts\n```"
+    },
+    {
+      "set": "dev",
+      "task": "insert_lines",
+      "outcome": "fallback",
+      "why": null,
+      "apply_error": "anchor 'self.prices = {}' matched 0 lines in add_item",
+      "gen_tokens": 40,
+      "decode_s": 12.0,
+      "prefill_s": 20.9,
+      "ops": "```edit\ninsert_after __init__\nanchor: self.items = {}\nline: self.history = []\ninsert_after add_item\nanchor: self.prices = {}\nline: self.history.append(name)\n```"
+    },
+    {
+      "set": "dev",
+      "task": "delete_method",
+      "outcome": "compressed_correct",
+      "why": null,
+      "apply_error": null,
+      "gen_tokens": 7,
+      "decode_s": 1.8,
+      "prefill_s": 20.0,
+      "ops": "```edit\ndelete clear\n```"
+    },
+    {
+      "set": "heldout",
+      "task": "rename_vague",
+      "outcome": "compressed_correct",
+      "why": null,
+      "apply_error": null,
+      "gen_tokens": 10,
+      "decode_s": 3.2,
+      "prefill_s": 16.5,
+      "ops": "```edit\nrename load_config read_config\n```"
+    },
+    {
+      "set": "heldout",
+      "task": "port_default",
+      "outcome": "compressed_correct",
+      "why": null,
+      "apply_error": null,
+      "gen_tokens": 29,
+      "decode_s": 11.5,
+      "prefill_s": 21.8,
+      "ops": "```edit\nreplace module\nold: DEFAULT_PORT = 8080\nnew: DEFAULT_PORT = 9090\n```"
+    },
+    {
+      "set": "heldout",
+      "task": "drop_unused",
+      "outcome": "compressed_correct",
+      "why": null,
+      "apply_error": null,
+      "gen_tokens": 7,
+      "decode_s": 2.5,
+      "prefill_s": 24.5,
+      "ops": "```edit\ndelete names\n```"
+    },
+    {
+      "set": "heldout",
+      "task": "print_count",
+      "outcome": "fallback",
+      "why": null,
+      "apply_error": "edit reads undefined names [('print_report', 'kept')]",
+      "gen_tokens": 23,
+      "decode_s": 8.9,
+      "prefill_s": 32.1,
+      "ops": "```edit\ninsert_before print_report\nanchor: summary = process_data\nline: print(len(kept))\n```"
+    },
+    {
+      "set": "heldout",
+      "task": "skip_zero",
+      "outcome": "fallback",
+      "why": null,
+      "apply_error": "model chose rewrite",
+      "gen_tokens": 6,
+      "decode_s": 1.8,
+      "prefill_s": 26.2,
+      "ops": "```edit\nrewrite\n```"
+    },
+    {
+      "set": "heldout",
+      "task": "doc_total",
+      "outcome": "fallback",
+      "why": null,
+      "apply_error": "model chose rewrite",
+      "gen_tokens": 6,
+      "decode_s": 3.0,
+      "prefill_s": 26.5,
+      "ops": "```edit\nrewrite\n```"
+    },
+    {
+      "set": "heldout",
+      "task": "guard_remove",
+      "outcome": "silent_wrong",
+      "why": "test_failed: AttributeError: 'Inventory' object has no attribute 'remove_item'",
+      "apply_error": null,
+      "gen_tokens": 8,
+      "decode_s": 2.9,
+      "prefill_s": 26.0,
+      "ops": "```edit\ndelete remove_item\n```"
+    }
+  ]
+}

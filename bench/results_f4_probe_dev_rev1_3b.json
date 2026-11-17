@@ -1,0 +1,78 @@
+{
+  "codec": "e1224116ecb5 (frozen)",
+  "note": "ops-only probe, no fallback runs; transcribed from the run log, which a reboot deleted",
+  "runs": [
+    {
+      "set": "dev",
+      "task": "rename_fn",
+      "outcome": "compressed_correct",
+      "detail": null
+    },
+    {
+      "set": "dev",
+      "task": "change_value",
+      "outcome": "silent_wrong",
+      "detail": "ast_differs: replaced only the mean line, plus an unrequested print_report change"
+    },
+    {
+      "set": "dev",
+      "task": "rename_class",
+      "outcome": "compressed_correct",
+      "detail": null
+    },
+    {
+      "set": "dev",
+      "task": "insert_lines",
+      "outcome": "compressed_correct",
+      "detail": null
+    },
+    {
+      "set": "dev",
+      "task": "delete_method",
+      "outcome": "compressed_correct",
+      "detail": null
+    },
+    {
+      "set": "heldout",
+      "task": "rename_vague",
+      "outcome": "compressed_correct",
+      "detail": null
+    },
+    {
+      "set": "heldout",
+      "task": "port_default",
+      "outcome": "compressed_correct",
+      "detail": null
+    },
+    {
+      "set": "heldout",
+      "task": "drop_unused",
+      "outcome": "compressed_correct",
+      "detail": null
+    },
+    {
+      "set": "heldout",
+      "task": "print_count",
+      "outcome": "fallback",
+      "detail": "edit reads undefined names [('print_report', 'kept')]"
+    },
+    {
+      "set": "heldout",
+      "task": "skip_zero",
+      "outcome": "fallback",
+      "detail": "model chose rewrite"
+    },
+    {
+      "set": "heldout",
+      "task": "doc_total",
+      "outcome": "fallback",
+      "detail": "model chose rewrite"
+    },
+    {
+      "set": "heldout",
+      "task": "guard_remove",
+      "outcome": "fallback",
+      "detail": "replace: 'if count <= 0:' not found in remove_item"
+    }
+  ]
+}

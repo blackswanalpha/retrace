@@ -1,0 +1,176 @@
+{
+  "args": {
+    "model": "../models/qwen2.5-3b-instruct-q4_k_m.gguf",
+    "reps": 1,
+    "threads": 4,
+    "arms": "comp",
+    "tasks": "rename_fn,change_value,rename_class,insert_lines,delete_method",
+    "k_max": 8,
+    "no_cache_prefix": false,
+    "seed": 0,
+    "out": "probe3.json"
+  },
+  "costs": [
+    1.0,
+    1.5402752676597224,
+    2.086329606948433,
+    2.210403412845716,
+    3.1680707907065475,
+    3.593112552971467,
+    4.261051031707491,
+    5.517890099138398,
+    6.594854210487308
+  ],
+  "ideal": {
+    "rename_fn": {
+      "ref_tokens": 210,
+      "enc_tokens": 17,
+      "encoding": "s/process_data/summarize_rows/\ns/kept/valid_rows/\n..."
+    },
+    "change_value": {
+      "ref_tokens": 195,
+      "enc_tokens": 9,
+      "encoding": "s/0.0/None/\n..."
+    },
+    "rename_class": {
+      "ref_tokens": 200,
+      "enc_tokens": 12,
+      "encoding": "s/Inventory/Stock/\ns/items/counts/\n..."
+    },
+    "insert_lines": {
+      "ref_tokens": 200,
+      "enc_tokens": 29,
+      "encoding": "...\n        self.prices = {}\n        self.history = []\n...\n        self.prices[name] = price\n        self.history.append(name)\n..."
+    },
+    "delete_method": {
+      "ref_tokens": 173,
+      "enc_tokens": 26,
+      "encoding": "...\n        return sum(self.items[n] * self.prices[n] for n in self.items)\n\n    def names(self):\n..."
+    }
+  },
+  "runs": [
+    {
+      "gen_tokens": 203,
+      "prefill_s": 13.116408310001134,
+      "decode_s": 28.810157157000504,
+      "e2e_s": 41.92656546700164,
+      "rep": 0,
+      "task": "rename_class",
+      "arm": "comp",
+      "prompt_tokens": 592,
+      "eff_tokens": 199,
+      "used_format": false,
+      "correct": false,
+      "code": "class Stock:\n    \"\"\"Track counts of items.\"\"\"\n\n    def __init__(self):\n        self.counts = {}\n        self.prices = {}\n\n    def add_item(self, name, count, price):\n        if count <= 0:\n            raise ValueError(\"counts must be positive\")\n        self.counts[name] = self.counts.get(name, 0) + count\n        self.prices[name] = price\n\n    def remove_item(self, name, count):\n        if name not in self.counts:\n            raise KeyError(name)\n        self.counts[name] -= count\n        if self.counts[name] <= 0:\n            del self.counts[name]\n            del self.prices[name]\n\n    def total_value(self):\n        return sum(self.counts[n] * self.prices[n] for n in self.counts)\n\n    def clear(self):\n        self.counts = {}\n        self.prices = {}\n\n    def names(self):\n        return sorted(self.counts)",
+      "text": "```edit\nclass Stock:\n    \"\"\"Track counts of items.\"\"\"\n\n    def __init__(self):\n        self.counts = {}\n        self.prices = {}\n\n    def add_item(self, name, count, price):\n        if count <= 0:\n            raise ValueError(\"counts must be positive\")\n        self.counts[name] = self.counts.get(name, 0) + count\n        self.prices[name] = price\n\n    def remove_item(self, name, count):\n        if name not in self.counts:\n            raise KeyError(name)\n        self.counts[name] -= count\n        if self.counts[name] <= 0:\n            del self.counts[name]\n            del self.prices[name]\n\n    def total_value(self):\n        return sum(self.counts[n] * self.prices[n] for n in self.counts)\n\n    def clear(self):\n        self.counts = {}\n        self.prices = {}\n\n    def names(self):\n        return sorted(self.counts)\n```",
+      "eff_tps": 6.873260126780712
+    },
+    {
+      "gen_tokens": 127,
+      "prefill_s": 13.473225216002902,
+      "decode_s": 19.7331366869912,
+      "e2e_s": 33.206361902994104,
+      "rep": 0,
+      "task": "change_value",
+      "arm": "comp",
+      "prompt_tokens": 604,
+      "eff_tokens": 252,
+      "used_format": true,
+      "correct": false,
+      "code": "        mean = total / len(kept) if kept else None\n        largest = max((row[\"value\"] for row in kept), default=None)\n        smallest = min((row[\"value\"] for row in kept), default=None)\ndef process_data(rows, threshold):\n    \"\"\"Filter rows and compute summary statistics.\"\"\"\n    kept = []\n    for row in rows:\n        if row[\"value\"] is None:\n            continue\n        if row[\"value\"] < threshold:\n            continue\n        kept.append(row)\n    total = 0\n    for row in kept:\n        total += row[\"value\"]\n    mean = total / len(kept) if kept else 0.0\n    largest = max((row[\"value\"] for row in kept), default=0.0)\n    smallest = min((row[\"value\"] for row in kept), default=0.0)\n    return {\n        \"count\": len(kept),\n        \"total\": total,\n        \"mean\": mean,\n        \"largest\": largest,\n        \"smallest\": smallest,\n    }\n\n\ndef print_report(rows, threshold):\n    summary = process_data(rows, threshold)\n    for key, value in summary.items():\n        print(f\"{key}: {value}\")",
+      "text": "```edit\n...\n        mean = total / len(kept) if kept else None\n        largest = max((row[\"value\"] for row in kept), default=None)\n        smallest = min((row[\"value\"] for row in kept), default=None)\n    return {\n        \"count\": len(kept),\n        \"total\": total,\n        \"mean\": mean,\n        \"largest\": largest,\n        \"smallest\": smallest,\n    }\n\n\ndef print_report(rows, threshold):\n    summary = process_data(rows, threshold)\n    for key, value in summary.items():\n        print(f\"{key}: {value}\")\n...\n```",
+      "eff_tps": 12.669843218403058
+    },
+    {
+      "gen_tokens": 180,
+      "prefill_s": 13.399369778999244,
+      "decode_s": 25.347414492003736,
+      "e2e_s": 38.74678427100298,
+      "rep": 0,
+      "task": "rename_fn",
+      "arm": "comp",
+      "prompt_tokens": 612,
+      "eff_tokens": 371,
+      "used_format": true,
+      "correct": false,
+      "code": "def process_data(rows, threshold):\n    \"\"\"Filter rows and compute summary statistics.\"\"\"\n    kept = []\n    for row in rows:\n        if row[\"value\"] is None:\n            continue\n        if row[\"value\"] < threshold:\n            continue\n        kept.append(row)\n    total = 0\n    for row in kept:\n        total += row[\"value\"]\n    mean = total / len(kept) if kept else 0.0\n    largest = max((row[\"value\"] for row in kept), default=0.0)\n    smallest = min((row[\"value\"] for row in kept), default=0.0)\n    return {\n        \"count\": len(kept),\n        \"total\": total,\n        \"mean\": mean,\n        \"largest\": largest,\n        \"smallest\": smallest,\n    }\n\n\ndef summarize_rows(rows, threshold):\n    valid_rows = []\n    for row in rows:\n        if row[\"value\"] is None:\n            continue\n        if row[\"value\"] < threshold:\n            continue\n        valid_rows.append(row)\n    total = 0\n    for row in valid_rows:\n        total += row[\"value\"]\n    mean = total / len(valid_rows) if valid_rows else 0.0\n    largest = max((row[\"value\"] for row in valid_rows), default=0.0)\n    smallest = min((row[\"value\"] for row in valid_rows), default=0.0)\n    return {\n        \"count\": len(valid_rows),\n        \"total\": total,\n        \"mean\": mean,\n        \"largest\": largest,\n        \"smallest\": smallest,\n    }\n\n\ndef print_report(rows, threshold):\n    summary = process_data(rows, threshold)\n    for key, value in summary.items():\n        print(f\"{key}: {value}\")",
+      "text": "```edit\n...\ndef summarize_rows(rows, threshold):\n    valid_rows = []\n    for row in rows:\n        if row[\"value\"] is None:\n            continue\n        if row[\"value\"] < threshold:\n            continue\n        valid_rows.append(row)\n    total = 0\n    for row in valid_rows:\n        total += row[\"value\"]\n    mean = total / len(valid_rows) if valid_rows else 0.0\n    largest = max((row[\"value\"] for row in valid_rows), default=0.0)\n    smallest = min((row[\"value\"] for row in valid_rows), default=0.0)\n    return {\n        \"count\": len(valid_rows),\n        \"total\": total,\n        \"mean\": mean,\n        \"largest\": largest,\n        \"smallest\": smallest,\n    }\n\n\ndef print_report(rows, threshold):\n...\n```",
+      "eff_tps": 14.55528685204863
+    },
+    {
+      "gen_tokens": 11,
+      "prefill_s": 11.651309326989576,
+      "decode_s": 1.4430583360081073,
+      "e2e_s": 13.094367662997684,
+      "rep": 0,
+      "task": "delete_method",
+      "arm": "comp",
+      "prompt_tokens": 578,
+      "eff_tokens": 189,
+      "used_format": true,
+      "correct": false,
+      "code": "class Inventory:\n    \"\"\"Track item counts and prices.\"\"\"\n\n    def __init__(self):\n        self.items = {}\n        self.prices = {}\n\n    def add_item(self, name, count, price):\n        if count <= 0:\n            raise ValueError(\"count must be positive\")\n        self.items[name] = self.items.get(name, 0) + count\n        self.prices[name] = price\n\n    def remove_item(self, name, count):\n        if name not in self.items:\n            raise KeyError(name)\n        self.items[name] -= count\n        if self.items[name] <= 0:\n            del self.items[name]\n            del self.prices[name]\n\n    def total_value(self):\n        return sum(self.items[n] * self.prices[n] for n in self.items)\n\n    def clear(self):\n        self.items = {}\n        self.prices = {}\n\n    def names(self):\n        return sorted(self.items)",
+      "text": "```edit\n...\n    def clear(self):\n...\n```",
+      "eff_tps": 119.06530562962392
+    },
+    {
+      "gen_tokens": 205,
+      "prefill_s": 15.98117243500019,
+      "decode_s": 29.78166503299144,
+      "e2e_s": 45.76283746799163,
+      "rep": 0,
+      "task": "insert_lines",
+      "arm": "comp",
+      "prompt_tokens": 606,
+      "eff_tokens": 200,
+      "used_format": true,
+      "correct": true,
+      "code": "class Inventory:\n    \"\"\"Track item counts and prices.\"\"\"\n\n    def __init__(self):\n        self.items = {}\n        self.prices = {}\n        self.history = []\n\n    def add_item(self, name, count, price):\n        if count <= 0:\n            raise ValueError(\"count must be positive\")\n        self.items[name] = self.items.get(name, 0) + count\n        self.prices[name] = price\n        self.history.append(name)\n\n    def remove_item(self, name, count):\n        if name not in self.items:\n            raise KeyError(name)\n        self.items[name] -= count\n        if self.items[name] <= 0:\n            del self.items[name]\n            del self.prices[name]\n\n    def total_value(self):\n        return sum(self.items[n] * self.prices[n] for n in self.items)\n\n    def clear(self):\n        self.items = {}\n        self.prices = {}\n\n    def names(self):\n        return sorted(self.items)",
+      "text": "```edit\nclass Inventory:\n    \"\"\"Track item counts and prices.\"\"\"\n\n    def __init__(self):\n        self.items = {}\n        self.prices = {}\n        self.history = []\n\n    def add_item(self, name, count, price):\n        if count <= 0:\n            raise ValueError(\"count must be positive\")\n        self.items[name] = self.items.get(name, 0) + count\n        self.prices[name] = price\n        self.history.append(name)\n\n    def remove_item(self, name, count):\n        if name not in self.items:\n            raise KeyError(name)\n        self.items[name] -= count\n        if self.items[name] <= 0:\n            del self.items[name]\n            del self.prices[name]\n\n    def total_value(self):\n        return sum(self.items[n] * self.prices[n] for n in self.items)\n\n    def clear(self):\n        self.items = {}\n        self.prices = {}\n\n    def names(self):\n        return sorted(self.items)\n...\n```",
+      "eff_tps": 6.682782511435402
+    }
+  ],
+  "summary": {
+    "rename_fn/comp": {
+      "correct": "0/1",
+      "eff_tps": null,
+      "e2e_s": null,
+      "prefill_s": 13.4,
+      "gen_tokens": 180,
+      "used_format": "1/1"
+    },
+    "change_value/comp": {
+      "correct": "0/1",
+      "eff_tps": null,
+      "e2e_s": null,
+      "prefill_s": 13.5,
+      "gen_tokens": 127,
+      "used_format": "1/1"
+    },
+    "rename_class/comp": {
+      "correct": "0/1",
+      "eff_tps": null,
+      "e2e_s": null,
+      "prefill_s": 13.1,
+      "gen_tokens": 203,
+      "used_format": "0/1"
+    },
+    "insert_lines/comp": {
+      "correct": "1/1",
+      "eff_tps": 6.68,
+      "e2e_s": 45.8,
+      "prefill_s": 16.0,
+      "gen_tokens": 205,
+      "used_format": "1/1"
+    },
+    "delete_method/comp": {
+      "correct": "0/1",
+      "eff_tps": null,
+      "e2e_s": null,
+      "prefill_s": 11.7,
+      "gen_tokens": 11,
+      "used_format": "1/1"
+    }
+  },
+  "overall": {}
+}
